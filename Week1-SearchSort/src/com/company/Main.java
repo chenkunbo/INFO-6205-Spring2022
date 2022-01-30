@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         int[] arr = {6, 5, 3, 1, 8, 7, 2, 4};
-        selectionSort(arr);
+        mergeSort(arr);
         System.out.println(Arrays.toString(arr));
 
     }
@@ -49,6 +49,56 @@ public class Main {
     }
 
 
+    private static void mergeSort(int[] arr){
+        mergeSort(arr, 0, arr.length -1);
+    }
+    // O( Log n * n) = O(nLogn)
+    private static void mergeSort(int[] arr, int low, int high){
+
+        if(low >= high){
+            return;
+        }
+
+        // O(log(n))
+        int mid = (low + high)/2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid+1, high);
+
+        merge(arr, low, high);
+
+    }
+    //O(n)
+    private static void merge(int[] arr, int low, int high){
+        int mid = (low +high)/2;
+        int[] temp = new int[high -low +1];
+        int i = low;
+        int j = mid +1;
+        int index = 0;
+
+        // O(n)
+        while( i <= mid && j <= high){
+            if(arr[i] < arr[j]){
+                temp[index++] = arr[i];
+                i ++;
+            }else {
+                temp[index++] = arr[j];
+                j ++;
+            }
+        }
+        //O(n)
+        while(i <= mid){
+            temp[index++] = arr[i++];
+        }
+        //O(n)
+        while(j <= high){
+            temp[index++] = arr[j++];
+        }
+
+        i = low;
+        for(int value : temp){
+            arr[i++] = value;
+        }
+    }
 
 
 
