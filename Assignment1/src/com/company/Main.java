@@ -15,22 +15,26 @@ public class Main {
 
         int[] a = new int[]{3, 2, 3};
         System.out.println("2. Majority Element II");
-        System.out.println( new Solution1().majorityElement(a));
+        System.out.println( new Solution2().majorityElement(a));
 
         int[] b = new int[]{3, 0, 6, 1, 5};
         System.out.println("3. H-Index");
-        System.out.println( new Solution2().hIndex(b));
+        System.out.println( new Solution3().hIndex(b));
 
         int[] c = {4, 9, 5};
         int[] d = {9, 4, 9, 8, 4};
         System.out.println("4. Intersection of Two Arrays");
-        System.out.println(Arrays.toString(new Solution3().intersection(c, d)));
+        System.out.println(Arrays.toString(new Solution4().intersection(c, d)));
 
         int[] arr = {1, 2, 3, 4, 5};
         int k = 4;
         int x = 3;
         System.out.println("5. Find K Closest Elements");
-        System.out.println(new Solution4().findClosestElements(arr, k, x));
+        System.out.println(new Solution5().findClosestElements(arr, k, x));
+
+        String s = "aab";
+        System.out.println("6. Reorganize String");
+        System.out.println(new Solution6().reorganizeString(s));
 
 
     }
@@ -63,7 +67,7 @@ public class Main {
     }
 
     // 229. Majority Element II ( HW-2 )
-    public static class Solution1 {
+    public static class Solution2 {
         public List<Integer> majorityElement(int[] nums) {
 
             int count1 = 0;
@@ -109,7 +113,7 @@ public class Main {
     }
 
     // 274. H-Index ( HW-3 )
-    public static class Solution2 {
+    public static class Solution3 {
         public int hIndex(int[] citations) {
             if (citations == null || citations.length == 0) {
                 return 0;
@@ -130,7 +134,7 @@ public class Main {
     }
 
     // 349. Intersection of Two Arrays ( HW-4 )
-    public static class Solution3 {
+    public static class Solution4 {
         public int[] intersection(int[] nums3, int[] nums4) {
             Arrays.sort(nums3);
             Arrays.sort(nums4);
@@ -159,7 +163,7 @@ public class Main {
     }
 
     // 658. Find K Closest Elements ( HW-5 )
-    public static class Solution4 {
+    public static class Solution5 {
         private List<Integer> findClosestElements(int[] arr, int k, int x) {
             int left = 0;
             int right = arr.length - k;
@@ -181,53 +185,58 @@ public class Main {
     }
 
     // 767. Reorganize String ( HW-6 )
-    private String reorganizeString(String s){
-        if(s.length() <= 1){
-            return s;
-        }
-        PriorityQueue<Item> pq = new PriorityQueue<>((x,y)->y.value-x.value);
+    public static class Solution6 {
+        private String reorganizeString(String s) {
+            if (s.length() <= 1) {
+                return s;
+            }
+            PriorityQueue<Item> pq = new PriorityQueue<>((x, y) -> y.value - x.value);
 
-        int[] record = new int[26];
-        for (char ch: s.toCharArray()){
-            record[ch - 'a']++;
-        }
-        int limit = s.length()/2 + s.length() % 2;
-        for(int i = 0; i < 26; i++){
-            if(record[i] > limit){
-                return "";
+            int[] record = new int[26];
+            for (char ch : s.toCharArray()) {
+                record[ch - 'a']++;
             }
-            if(record[i] >0){
-                pq.add(new Item(record[i], (char) (i + 'a')));
-            }
-        }
-        return greedyBuild(s.length(),pq);
-    }
-    private String greedyBuild(int len, PriorityQueue<Item> pq){
-        char[] ans = new char[len];
-        int t = 0;
-        while(pq.size() >0){
-            Item cur = pq.poll();
-            for(int i = 0; i < cur.value; i++){
-                if(t >= len) {
-                    t=1;
-                    ans[t] = cur.pattern;
-                } else {
-                    ans[t] = cur.pattern;
+            int limit = s.length() / 2 + s.length() % 2;
+            for (int i = 0; i < 26; i++) {
+                if (record[i] > limit) {
+                    return "";
                 }
-                t+=2;
+                if (record[i] > 0) {
+                    pq.add(new Item(record[i], (char) (i + 'a')));
+                }
             }
+            return greedyBuild(s.length(), pq);
         }
-        return new String(ans);
-    }
 
-    static class Item{
-        int value;
-        char pattern;
-        public Item(){
+        private String greedyBuild(int len, PriorityQueue<Item> pq) {
+            char[] ans = new char[len];
+            int t = 0;
+            while (pq.size() > 0) {
+                Item cur = pq.poll();
+                for (int i = 0; i < cur.value; i++) {
+                    if (t >= len) {
+                        t = 1;
+                        ans[t] = cur.pattern;
+                    } else {
+                        ans[t] = cur.pattern;
+                    }
+                    t += 2;
+                }
+            }
+            return new String(ans);
         }
-        public Item(int v, char p){
-            this.value = v;
-            this.pattern = p;
+
+        static class Item {
+            int value;
+            char pattern;
+
+            public Item() {
+            }
+
+            public Item(int v, char p) {
+                this.value = v;
+                this.pattern = p;
+            }
         }
     }
 
