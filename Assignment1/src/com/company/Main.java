@@ -1,20 +1,19 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static java.util.Arrays.sort;
 
 public class Main {
 
+
     public static void main(String[] args) {
         int[] nums1 = {2, 0, 2, 1, 1, 0};
         sortColors(nums1);
         System.out.println(Arrays.toString(nums1));
-        int[] nums2 = {3, 2, 3};
-        majorityElement(nums2);
-        System.out.println(Arrays.toString(nums2));
+        int[] a = {3, 2, 3};
+        majorityElement(a);
+        System.out.println( majorityElement(a));
 
     }
 
@@ -113,7 +112,34 @@ public class Main {
         return -1;
     }
 
+    // 349. Intersection of Two Arrays ( HW-4 )
+    private int[] intersection(int[] nums3, int[] nums4){
+        sort(nums3);
+        sort(nums4);
+        int i = 0;
+        int j = 0;
+        Set<Integer> intersect = new HashSet();
+        while (i < nums3.length && j < nums4.length){
+            if(nums3[i] == nums4[j]){
+                intersect.add(nums3[i]);
+                i++;
+                j++;
+            }
+            else if(nums3[i] < nums4[j]){
+                i++;
+            }
+            else{
+                j++;
+            }
+        }
+        int[] result = new int[intersect.size()];
+        int k = 0;
+        for(int num : intersect){
+            result[k++] = num;
 
+        }
+        return result;
+    }
 
 
 
