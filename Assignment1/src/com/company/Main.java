@@ -46,73 +46,76 @@ public class Main {
 
     // 229. Majority Element II ( HW-2 )
 
-        private static List<Integer> majorityElement(int[] nums2) {
-            List<Integer> res = new ArrayList<>();
+    private static List<Integer> majorityElement(int[] nums2) {
+        List<Integer> res = new ArrayList<>();
 
-            if (nums2 == null || nums2.length == 0) {
-                return res;
-            }
-
-            int count1 = 0;
-            int count2 = 0;
-
-            int candidate1 = 1;
-            int candidate2 = 1;
-
-            for (int i = 0; i < nums2.length; i++) {
-
-                if (nums2[i] == candidate1) {
-                    count1++;
-                } else if (nums2[i] == candidate2) {
-                    count2++;
-                } else if (count1 == 0) {
-                    candidate1 = nums2[i];
-                    count1++;
-                } else if (count2 == 0) {
-                    candidate2 = nums2[i];
-                    count2++;
-                } else {
-                    count1--;
-                    count2--;
-                }
-            }
-
-
-            for (int n : nums2) {
-                if (n == candidate1) {
-                    count1++;
-                } else if (n == candidate2) {
-                    count2++;
-                }
-            }
-            if (count1 > nums2.length / 3) {
-                res.add(candidate1);
-            }
-            if (count2 > nums2.length / 3) {
-                res.add(candidate2);
-            }
+        if (nums2 == null || nums2.length == 0) {
             return res;
         }
+        int count1 = 0;
+        int count2 = 0;
 
-        // 274. H-Index ( HW-3 )
-        private int hIndex(int[] citations) {
-            if (citations == null || citations.length == 0) {
-                return 0;
-            }
-            int[] counts = new int[citations.length + 1];
-            for (int i = 0; i < citations.length; i++) {
-                counts[Math.min(citations[i], citations.length)]++;
+        int candidate1 = 1;
+        int candidate2 = 1;
 
+        for (int i = 0; i < nums2.length; i++) {
+
+            if (nums2[i] == candidate1) {
+                count1++;
             }
-            int citationCount = 0;
-            for (int i = counts.length - 1; i >= 0; i--) {
-                citationCount += counts[i];
-                if (i <= citationCount) {
-                    return i;
-                }
+            else if (nums2[i] == candidate2) {
+                count2++;
             }
-            return -1;
+            else if (count1 == 0) {
+                candidate1 = nums2[i];
+                count1++;
+            }
+            else if (count2 == 0) {
+                candidate2 = nums2[i];
+                count2++;
+            } else {
+                count1--;
+                count2--;
+            }
         }
+
+
+        for (int n : nums2) {
+            if (n == candidate1) {
+                count1++;
+            } else if (n == candidate2) {
+                count2++;
+            }
+        }
+        if (count1 > nums2.length / 3) {
+            res.add(candidate1);
+        }
+        if (count2 > nums2.length / 3) {
+            res.add(candidate2);
+        }
+        return res;
+    }
+
+
+    // 274. H-Index ( HW-3 )
+    private int hIndex(int[] citations) {
+        if (citations == null || citations.length == 0) {
+            return 0;
+        }
+        int[] counts = new int[citations.length + 1];
+        for (int i = 0; i < citations.length; i++) {
+            counts[Math.min(citations[i], citations.length)]++;
+
+        }
+        int citationCount = 0;
+        for (int i = counts.length - 1; i >= 0; i--) {
+            citationCount += counts[i];
+            if (i <= citationCount) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
 
 
