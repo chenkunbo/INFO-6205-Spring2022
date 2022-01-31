@@ -21,10 +21,10 @@ public class Main {
         System.out.println("3. H-Index");
         System.out.println( new Solution2().hIndex(b));
 
-        int[] c = new int[]{4, 9, 5};
-        int[] d = new int[]{9, 4, 9, 8, 4};
+        int[] c = {4, 9, 5};
+        int[] d = {9, 4, 9, 8, 4};
         System.out.println("4. Intersection of Two Arrays");
-        System.out.println(new Solution3().intersection(c, d));
+        System.out.println(Arrays.toString(new Solution3().intersection(c, d)));
 
         int[] arr = {1, 2, 3, 4, 5};
         int k = 4;
