@@ -58,20 +58,17 @@ public class Main {
         int candidate1 = 1;
         int candidate2 = 1;
 
-        for (int i = 0; i < nums2.length; i++) {
+        for (int j : nums2) {
 
-            if (nums2[i] == candidate1) {
+            if (j == candidate1) {
                 count1++;
-            }
-            else if (nums2[i] == candidate2) {
+            } else if (j == candidate2) {
                 count2++;
-            }
-            else if (count1 == 0) {
-                candidate1 = nums2[i];
+            } else if (count1 == 0) {
+                candidate1 = j;
                 count1++;
-            }
-            else if (count2 == 0) {
-                candidate2 = nums2[i];
+            } else if (count2 == 0) {
+                candidate2 = j;
                 count2++;
             } else {
                 count1--;
@@ -103,9 +100,8 @@ public class Main {
             return 0;
         }
         int[] counts = new int[citations.length + 1];
-        for (int i = 0; i < citations.length; i++) {
-            counts[Math.min(citations[i], citations.length)]++;
-
+        for (int citation : citations) {
+            counts[Math.min(citation, citations.length)]++;
         }
         int citationCount = 0;
         for (int i = counts.length - 1; i >= 0; i--) {
