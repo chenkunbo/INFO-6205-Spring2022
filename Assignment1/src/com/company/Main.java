@@ -12,16 +12,25 @@ public class Main {
         sortColors(nums1);
         System.out.println("1. Sort Colors");
         System.out.println(Arrays.toString(nums1));
+
         int[] a = new int[]{3, 2, 3};
         System.out.println("2. Majority Element II");
         System.out.println( new Solution1().majorityElement(a));
+
         int[] b = new int[]{3, 0, 6, 1, 5};
         System.out.println("3. H-Index");
         System.out.println( new Solution2().hIndex(b));
+
         int[] c = new int[]{4, 9, 5};
         int[] d = new int[]{9, 4, 9, 8, 4};
         System.out.println("4. Intersection of Two Arrays");
         System.out.println(new Solution3().intersection(c, d));
+
+        int[] arr = {1, 2, 3, 4, 5};
+        int k = 4;
+        int x = 3;
+        System.out.println("5. Find K Closest Elements");
+        System.out.println(new Solution4().findClosestElements(arr, k, x));
 
 
     }
@@ -150,24 +159,25 @@ public class Main {
     }
 
     // 658. Find K Closest Elements ( HW-5 )
-    private List<Integer> findClosestElements(int[] arr, int k, int x){
-        int left = 0;
-        int right = arr.length - k;
+    public static class Solution4 {
+        private List<Integer> findClosestElements(int[] arr, int k, int x) {
+            int left = 0;
+            int right = arr.length - k;
 
-        while(left < right){
-            int mid = (left +right)/2;
-            if(x - arr[mid] > arr[mid + k] - x){
-                left = mid + 1;
+            while (left < right) {
+                int mid = (left + right) / 2;
+                if (x - arr[mid] > arr[mid + k] - x) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
             }
-            else{
-                right = mid;
+            List<Integer> result = new ArrayList<Integer>();
+            for (int i = left; i < left + k; i++) {
+                result.add(arr[i]);
             }
+            return result;
         }
-        List<Integer> result = new ArrayList<Integer>();
-        for(int i = left; i < left + k; i++){
-            result.add(arr[i]);
-        }
-        return result;
     }
 
     // 767. Reorganize String ( HW-6 )
