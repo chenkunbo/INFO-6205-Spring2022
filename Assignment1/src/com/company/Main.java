@@ -10,11 +10,17 @@ public class Main {
     public static void main(String[] args) {
         int[] nums1 = {2, 0, 2, 1, 1, 0};
         sortColors(nums1);
+        System.out.println("1. Sort Colors");
         System.out.println(Arrays.toString(nums1));
         int[] a = new int[]{3, 2, 3};
+        System.out.println("2. Majority Element II");
         System.out.println( new Solution1().majorityElement(a));
         int[] b = new int[]{3, 0, 6, 1, 5};
+        System.out.println("3. H-Index");
         System.out.println( new Solution2().hIndex(b));
+        int[] nums3 = {4,9,5}; int[] nums4 = {9,4,9,8,4};
+        System.out.println("4. Intersection of Two Arrays");
+        System.out.println( new Solution3().intersection(nums3, nums4));
     }
 
     private static void swap(int[] nums1, int a, int b) {
@@ -111,32 +117,32 @@ public class Main {
     }
 
     // 349. Intersection of Two Arrays ( HW-4 )
-    private int[] intersection(int[] nums3, int[] nums4){
-        sort(nums3);
-        sort(nums4);
-        int i = 0;
-        int j = 0;
-        Set<Integer> intersect = new HashSet();
-        while (i < nums3.length && j < nums4.length){
-            if(nums3[i] == nums4[j]){
-                intersect.add(nums3[i]);
-                i++;
-                j++;
+    public static class Solution3 {
+        public int[] intersection(int[] nums3, int[] nums4) {
+            sort(nums3);
+            sort(nums4);
+            int i = 0;
+            int j = 0;
+            Set<Integer> intersect = new HashSet();
+            while (i < nums3.length && j < nums4.length) {
+                if (nums3[i] == nums4[j]) {
+                    intersect.add(nums3[i]);
+                    i++;
+                    j++;
+                } else if (nums3[i] < nums4[j]) {
+                    i++;
+                } else {
+                    j++;
+                }
             }
-            else if(nums3[i] < nums4[j]){
-                i++;
-            }
-            else{
-                j++;
-            }
-        }
-        int[] result = new int[intersect.size()];
-        int k = 0;
-        for(int num : intersect){
-            result[k++] = num;
+            int[] result = new int[intersect.size()];
+            int k = 0;
+            for (int num : intersect) {
+                result[k++] = num;
 
+            }
+            return result;
         }
-        return result;
     }
 
     // 658. Find K Closest Elements ( HW-5 )
