@@ -47,12 +47,13 @@ public class Main {
 
         int[] e = {1, 1, 2, 2, 2, 3};
         System.out.println("9. Sort Array by Increasing Frequency");
-        System.out.println(new Solution9().frequencySort(e));
+        System.out.println(Arrays.toString(new Solution9().frequencySort(e)));
 
-        String words = String.valueOf(new String[]{"i", "love", "leetcode", "i", "love", "coding"});
+        String[] words = new String[]{"i", "love", "leetcode", "i", "love", "coding"};
         int f = 2;
         System.out.println("10. Sort Array by Increasing Frequency");
         System.out.println(new Solution10().topKFrequent(words, f));
+
 
     }
 
