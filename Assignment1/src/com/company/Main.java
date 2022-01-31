@@ -49,6 +49,10 @@ public class Main {
         System.out.println("9. Sort Array by Increasing Frequency");
         System.out.println(new Solution9().frequencySort(e));
 
+        String words = String.valueOf(new String[]{"i", "love", "leetcode", "i", "love", "coding"});
+        int f = 2;
+        System.out.println("10. Sort Array by Increasing Frequency");
+        System.out.println(new Solution10().topKFrequent(words, f));
 
     }
 
@@ -350,7 +354,7 @@ public class Main {
 
     // 692. Top K Frequent Words ( HW-10 )
     public static class Solution10 {
-        public List<String> topKFrequent(String[] words, int k) {
+        public List<String> topKFrequent(String[] words, int f) {
             Map<String, Integer> map = new HashMap();
             for (int i = 0; i < words.length; i++) {
                 if(map.containsKey(words[i])){
@@ -364,7 +368,7 @@ public class Main {
 
             for (String s : map.keySet()){
                 pq.add(s);
-                if(pq.size() > k){
+                if(pq.size() > f){
                     pq.remove();
                 }
             }
