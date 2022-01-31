@@ -20,8 +20,11 @@ public class Main {
         System.out.println( new Solution2().hIndex(b));
         int[] nums3 = {4,9,5}; int[] nums4 = {9,4,9,8,4};
         System.out.println("4. Intersection of Two Arrays");
-        System.out.println( new Solution3().intersection(nums3, nums4));
+
+
+
     }
+
 
     private static void swap(int[] nums1, int a, int b) {
         int temp = nums1[a];
