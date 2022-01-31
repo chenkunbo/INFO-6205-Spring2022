@@ -179,7 +179,7 @@ public class Main {
                 return "";
             }
             if(record[i] >0){
-                pq.add(new Item(record[i], (char)(i+'a')));
+                pq.add(new Item(record[i], (char) (i + 'a')));
             }
         }
         return greedyBuild(s.length(),pq);
@@ -202,7 +202,7 @@ public class Main {
         return new String(ans);
     }
 
-    class Item{
+    static class Item{
         int value;
         char pattern;
         public Item(){
@@ -225,14 +225,18 @@ public class Main {
             if(!charFreMap.containsKey(c)){
                 continue;
             }
-            for(int i = 0; i < charFreMap.get(c); i++){
+            int i = 0;
+            while (i < charFreMap.get(c)) {
                 sb.append(c);
+                i++;
             }
             charFreMap.remove(c);
         }
         for (char c : charFreMap.keySet()){
-            for (int i = 0; i < charFreMap.get(c); i++){
+            int i = 0;
+            while (i < charFreMap.get(c)) {
                 sb.append(c);
+                i++;
             }
         }
         return sb.toString();
@@ -240,7 +244,7 @@ public class Main {
 
     // 969. Pancake Sorting ( HW-8 )
     private List<Integer> pancakeSort(int[] A){
-        List<Integer> list = new ArrayList();
+        ArrayList list = new ArrayList();
         for(int n = A.length; n > 0; n--){
             int index = find(A, n);
             flip(A, index);
@@ -269,29 +273,30 @@ public class Main {
     // 1636. Sort Array by Increasing Frequency ( HW-9 )
     private int[] frequencySort(int[] nums5){
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int i = 0; i < nums5.length; i++){
-            if(map.containsKey(nums5[i])){
-                map.put(nums5[i], map.get(nums5[i]) + 1);
-            }
-            else{
-                map.put(nums5[i], 1);
+        {
+            int i = 0;
+            while (i < nums5.length) {
+                if(map.containsKey(nums5[i])){
+                    map.put(nums5[i], map.get(nums5[i]) + 1);
+                }
+                else{
+                    map.put(nums5[i], 1);
+                }
+                i++;
             }
         }
         List<Integer> list = new ArrayList<Integer>(map.keySet());
-        Collections.sort(list, (a,b) ->{
-            if(map.get(a) == map.get(b)){
+        list.sort((a, b) -> {
+            if (Objects.equals(map.get(b), map.get(a))) {
                 return b - a;
-            }
-            else{
+            } else {
                 return map.get(a) - map.get(b);
             }
         });
-        int result[] = new int[nums5.length];
+        int[] result = new int[nums5.length];
         int index = 0;
         for(int num : list){
-            for(int i = 0; i < map.get(num); i++){
-                result[index++] = num;
-            }
+            for(int i = 0; i < map.get(num); i++) result[index++] = num;
         }
         return result;
     }
