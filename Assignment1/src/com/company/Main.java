@@ -350,21 +350,30 @@ public class Main {
 
     // 692. Top K Frequent Words ( HW-10 )
     public static class Solution10 {
-        public List<String> topFrequent(String[] words, int k) {
-            Map<String, Integer> wordCount = new HashMap();
-            for (String word : words) {
-                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
-            }
-            List<String> distinctWords = new ArrayList(wordCount.keySet());
-            distinctWords.sort((word1, word2) -> {
-                int comparision =
-                        wordCount.get(word2).compareTo(wordCount.get(word1));
-                if (comparision == 0) {
-                    return word1.compareTo(word2);
+        public List<String> topKFrequent(String[] words, int k) {
+            Map<String, Integer> map = new HashMap();
+            for (int i = 0; i < words.length; i++) {
+                if(map.containsKey(words[i])){
+                    map.put(words[i], map.get(words[i]) + 1);
                 }
-                return comparision;
-            });
-            return distinctWords.subList(0, k);
+                else{
+                    map.put(words[i], 1);
+                }
+            }
+            PriorityQueue<String> pq = new PriorityQueue<>((a,b) -> map.get(a).equals(map.get(b)) ? b.compareTo(a) : map.get(a) - map.get(b));
+
+            for (String s : map.keySet()){
+                pq.add(s);
+                if(pq.size() > k){
+                    pq.remove();
+                }
+            }
+            List<String> list = new ArrayList<>();
+            while (!pq.isEmpty()){
+                list.add(0, pq.poll());
+            }
+
+            return list;
         }
     }
 
