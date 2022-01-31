@@ -18,8 +18,8 @@ public class Main {
         int[] b = new int[]{3, 0, 6, 1, 5};
         System.out.println("3. H-Index");
         System.out.println( new Solution2().hIndex(b));
-        int[] c = new int[]{4,9,5};
-        int[] d = new int[]{9,4,9,8,4};
+        int[] c = new int[]{4, 9, 5};
+        int[] d = new int[]{9, 4, 9, 8, 4};
         System.out.println("4. Intersection of Two Arrays");
         System.out.println(new Solution3().intersection(c, d));
 
