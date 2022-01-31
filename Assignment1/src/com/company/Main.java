@@ -18,9 +18,10 @@ public class Main {
         int[] b = new int[]{3, 0, 6, 1, 5};
         System.out.println("3. H-Index");
         System.out.println( new Solution2().hIndex(b));
-        int[] nums3 = {4,9,5}; int[] nums4 = {9,4,9,8,4};
+        int[] c = new int[]{4,9,5};
+        int[] d = new int[]{9,4,9,8,4};
         System.out.println("4. Intersection of Two Arrays");
-
+        System.out.println(new Solution3().intersection(c, d));
 
 
     }
@@ -122,8 +123,8 @@ public class Main {
     // 349. Intersection of Two Arrays ( HW-4 )
     public static class Solution3 {
         public int[] intersection(int[] nums3, int[] nums4) {
-            sort(nums3);
-            sort(nums4);
+            Arrays.sort(nums3);
+            Arrays.sort(nums4);
             int i = 0;
             int j = 0;
             Set<Integer> intersect = new HashSet();
