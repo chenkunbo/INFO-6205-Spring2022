@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.sort;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -91,5 +93,30 @@ public class Main {
             }
             return res;
         }
-    }
 
+        // 274. H-Index ( HW-3 )
+        private int hIndex(int[] citations) {
+            if (citations == null || citations.length == 0) {
+                return 0;
+            }
+            int[] counts = new int[citations.length + 1];
+            for (int i = 0; i < citations.length; i++) {
+                counts[Math.min(citations[i], citations.length)]++;
+
+            }
+            int citationCount = 0;
+            for (int i = counts.length - 1; i >= 0; i--) {
+                citationCount += counts[i];
+                if (i <= citationCount) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+
+
+
+
+
+}
