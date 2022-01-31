@@ -45,6 +45,9 @@ public class Main {
         System.out.println("8. Pancake Sorting");
         System.out.println(new Solution8().pancakeSort(arr2));
 
+        int[] e = {1, 1, 2, 2, 2, 3};
+        System.out.println("9. Sort Array by Increasing Frequency");
+        System.out.println(new Solution9().frequencySort(e));
 
 
     }
@@ -314,52 +317,55 @@ public class Main {
     }
 
     // 1636. Sort Array by Increasing Frequency ( HW-9 )
-    private int[] frequencySort(int[] nums5){
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        {
-            int i = 0;
-            while (i < nums5.length) {
-                if(map.containsKey(nums5[i])){
-                    map.put(nums5[i], map.get(nums5[i]) + 1);
+    public static class Solution9 {
+        public int[] frequencySort(int[] nums5) {
+            Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+            {
+                int i = 0;
+                while (i < nums5.length) {
+                    if (map.containsKey(nums5[i])) {
+                        map.put(nums5[i], map.get(nums5[i]) + 1);
+                    } else {
+                        map.put(nums5[i], 1);
+                    }
+                    i++;
                 }
-                else{
-                    map.put(nums5[i], 1);
+            }
+            List<Integer> list = new ArrayList<Integer>(map.keySet());
+            list.sort((a, b) -> {
+                if (Objects.equals(map.get(b), map.get(a))) {
+                    return b - a;
+                } else {
+                    return map.get(a) - map.get(b);
                 }
-                i++;
+            });
+            int[] result = new int[nums5.length];
+            int index = 0;
+            for (int num : list) {
+                for (int i = 0; i < map.get(num); i++) result[index++] = num;
             }
+            return result;
         }
-        List<Integer> list = new ArrayList<Integer>(map.keySet());
-        list.sort((a, b) -> {
-            if (Objects.equals(map.get(b), map.get(a))) {
-                return b - a;
-            } else {
-                return map.get(a) - map.get(b);
-            }
-        });
-        int[] result = new int[nums5.length];
-        int index = 0;
-        for(int num : list){
-            for(int i = 0; i < map.get(num); i++) result[index++] = num;
-        }
-        return result;
     }
 
     // 692. Top K Frequent Words ( HW-10 )
-    private List<String> topFrequent(String[] words, int k){
-        Map<String, Integer> wordCount = new HashMap();
-        for(String word : words){
-            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
-        }
-        List<String> distinctWords = new ArrayList(wordCount.keySet());
-        distinctWords.sort((word1, word2) -> {
-            int comparision =
-                    wordCount.get(word2).compareTo(wordCount.get(word1));
-            if (comparision == 0) {
-                return word1.compareTo(word2);
+    public static class Solution10 {
+        public List<String> topFrequent(String[] words, int k) {
+            Map<String, Integer> wordCount = new HashMap();
+            for (String word : words) {
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
             }
-            return comparision;
-        });
-        return distinctWords.subList(0, k);
+            List<String> distinctWords = new ArrayList(wordCount.keySet());
+            distinctWords.sort((word1, word2) -> {
+                int comparision =
+                        wordCount.get(word2).compareTo(wordCount.get(word1));
+                if (comparision == 0) {
+                    return word1.compareTo(word2);
+                }
+                return comparision;
+            });
+            return distinctWords.subList(0, k);
+        }
     }
 
 
