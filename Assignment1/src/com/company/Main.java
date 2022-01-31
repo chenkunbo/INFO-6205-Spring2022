@@ -41,6 +41,12 @@ public class Main {
         System.out.println("7. Custom Sort String");
         System.out.println(new Solution7().customSortString(order, ss));
 
+        int[] arr2 = {3, 2, 4, 1};
+        System.out.println("8. Pancake Sorting");
+        System.out.println(new Solution8().pancakeSort(arr2));
+
+
+
     }
 
 
