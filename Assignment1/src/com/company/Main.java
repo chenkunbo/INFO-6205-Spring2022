@@ -238,7 +238,65 @@ public class Main {
         return sb.toString();
     }
 
-    //  ( HW-8 )
+    // 969. Pancake Sorting ( HW-8 )
+    private List<Integer> pancakeSort(int[] A){
+        List<Integer> list = new ArrayList();
+        for(int n = A.length; n > 0; n--){
+            int index = find(A, n);
+            flip(A, index);
+            flip(A, n - 1);
+            list.add(index + 1);
+            list.add(n);
+
+        }
+        return list;
+    }
+    private int find(int[] A, int target){
+        for(int i = 0; i < A.length; i++)
+            if(A[i] == target)
+                return i;
+        return -1;
+    }
+    private void flip(int[] A, int j){
+        int i = 0;
+        while(i < j){
+            int temp = A[i];
+            A[i++] = A[j];
+            A[j--] = temp;
+        }
+    }
+
+    // 1636. Sort Array by Increasing Frequency ( HW-9 )
+    private int[] frequencySort(int[] nums5){
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < nums5.length; i++){
+            if(map.containsKey(nums5[i])){
+                map.put(nums5[i], map.get(nums5[i]) + 1);
+            }
+            else{
+                map.put(nums5[i], 1);
+            }
+        }
+        List<Integer> list = new ArrayList<Integer>(map.keySet());
+        Collections.sort(list, (a,b) ->{
+            if(map.get(a) == map.get(b)){
+                return b - a;
+            }
+            else{
+                return map.get(a) - map.get(b);
+            }
+        });
+        int result[] = new int[nums5.length];
+        int index = 0;
+        for(int num : list){
+            for(int i = 0; i < map.get(num); i++){
+                result[index++] = num;
+            }
+        }
+        return result;
+    }
+
+    // ( HW-10 )
 
 
 
