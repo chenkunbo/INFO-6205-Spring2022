@@ -213,6 +213,32 @@ public class Main {
         }
     }
 
+    // 791. Custom Sort String ( HW-7 )
+    private String customSortString(String S, String T){
+        Map<Character, Integer> charFreMap = new HashMap<>();
+        for (char c : T.toCharArray()){
+            charFreMap.put(c, charFreMap.getOrDefault(c, 0)+1);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(char c : S.toCharArray()){
+            if(!charFreMap.containsKey(c)){
+                continue;
+            }
+            for(int i = 0; i < charFreMap.get(c); i++){
+                sb.append(c);
+            }
+            charFreMap.remove(c);
+        }
+        for (char c : charFreMap.keySet()){
+            for (int i = 0; i < charFreMap.get(c); i++){
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    //  ( HW-8 )
 
 
 
