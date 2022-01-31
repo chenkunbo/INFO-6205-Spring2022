@@ -11,9 +11,8 @@ public class Main {
         int[] nums1 = {2, 0, 2, 1, 1, 0};
         sortColors(nums1);
         System.out.println(Arrays.toString(nums1));
-        int[] a = {3, 2, 3};
-        majorityElement(a);
-        System.out.println( majorityElement(a));
+        int[] a = new int[]{3, 2, 3};
+        System.out.println( new Solution().majorityElement(a));
 
     }
 
@@ -44,54 +43,50 @@ public class Main {
     }
 
     // 229. Majority Element II ( HW-2 )
+    public static class Solution {
+        public List<Integer> majorityElement(int[] nums) {
 
-    private static List<Integer> majorityElement(int[] nums2) {
-        List<Integer> res = new ArrayList<>();
+            int count1 = 0;
+            int count2 = 0;
 
-        if (nums2 == null || nums2.length == 0) {
-            return res;
-        }
-        int count1 = 0;
-        int count2 = 0;
+            Integer candidate1 = null;
+            Integer candidate2 = null;
 
-        int candidate1 = 1;
-        int candidate2 = 1;
+            for (int n : nums) {
 
-        for (int j : nums2) {
-
-            if (j == candidate1) {
-                count1++;
-            } else if (j == candidate2) {
-                count2++;
-            } else if (count1 == 0) {
-                candidate1 = j;
-                count1++;
-            } else if (count2 == 0) {
-                candidate2 = j;
-                count2++;
-            } else {
-                count1--;
-                count2--;
+                if (candidate1 != null && candidate1 == n) {
+                    count1++;
+                } else if (candidate2 != null && candidate2 == n) {
+                    count2++;
+                } else if (count1 == 0) {
+                    candidate1 = n;
+                    count1++;
+                } else if (count2 == 0) {
+                    candidate2 = n;
+                    count2++;
+                } else {
+                    count1--;
+                    count2--;
+                }
             }
-        }
-
-
-        for (int n : nums2) {
-            if (n == candidate1) {
-                count1++;
-            } else if (n == candidate2) {
-                count2++;
+            List<Integer> result = new ArrayList<>();
+            count1 = 0;
+            count2 = 0;
+            for (int n : nums) {
+                if (candidate1 != null && candidate1 == n) {
+                    count1++;
+                }
+                if (candidate2 != null && candidate2 == n) {
+                    count2++;
+                }
             }
+            int p = nums.length;
+            if (count1 > p / 3) result.add(candidate1);
+            if (count2 > p / 3) result.add(candidate2);
+
+            return result;
         }
-        if (count1 > nums2.length / 3) {
-            res.add(candidate1);
-        }
-        if (count2 > nums2.length / 3) {
-            res.add(candidate2);
-        }
-        return res;
     }
-
 
     // 274. H-Index ( HW-3 )
     private int hIndex(int[] citations) {
