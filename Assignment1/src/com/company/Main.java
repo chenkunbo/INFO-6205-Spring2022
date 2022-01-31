@@ -36,6 +36,10 @@ public class Main {
         System.out.println("6. Reorganize String");
         System.out.println(new Solution6().reorganizeString(s));
 
+        String order = "cbafg";
+        String ss = "abcd";
+        System.out.println("7. Custom Sort String");
+        System.out.println(new Solution7().customSortString(order, ss));
 
     }
 
@@ -241,59 +245,65 @@ public class Main {
     }
 
     // 791. Custom Sort String ( HW-7 )
-    private String customSortString(String S, String T){
-        Map<Character, Integer> charFreMap = new HashMap<>();
-        for (char c : T.toCharArray()){
-            charFreMap.put(c, charFreMap.getOrDefault(c, 0)+1);
-        }
+    public static class Solution7 {
+        public String customSortString(String S, String T) {
+            Map<Character, Integer> charFreMap = new HashMap<>();
+            for (char c : T.toCharArray()) {
+                charFreMap.put(c, charFreMap.getOrDefault(c, 0) + 1);
+            }
 
-        StringBuilder sb = new StringBuilder();
-        for(char c : S.toCharArray()){
-            if(!charFreMap.containsKey(c)){
-                continue;
+            StringBuilder sb = new StringBuilder();
+            for (char c : S.toCharArray()) {
+                if (!charFreMap.containsKey(c)) {
+                    continue;
+                }
+                int i = 0;
+                while (i < charFreMap.get(c)) {
+                    sb.append(c);
+                    i++;
+                }
+                charFreMap.remove(c);
             }
-            int i = 0;
-            while (i < charFreMap.get(c)) {
-                sb.append(c);
-                i++;
+            for (char c : charFreMap.keySet()) {
+                int i = 0;
+                while (i < charFreMap.get(c)) {
+                    sb.append(c);
+                    i++;
+                }
             }
-            charFreMap.remove(c);
+            return sb.toString();
         }
-        for (char c : charFreMap.keySet()){
-            int i = 0;
-            while (i < charFreMap.get(c)) {
-                sb.append(c);
-                i++;
-            }
-        }
-        return sb.toString();
     }
 
     // 969. Pancake Sorting ( HW-8 )
-    private List<Integer> pancakeSort(int[] A){
-        ArrayList list = new ArrayList();
-        for(int n = A.length; n > 0; n--){
-            int index = find(A, n);
-            flip(A, index);
-            flip(A, n - 1);
-            list.add(index + 1);
-            list.add(n);
+    public static class Solution8 {
+        public ArrayList pancakeSort(int[] A) {
+            ArrayList list = new ArrayList();
+            for (int n = A.length; n > 0; n--) {
+                int index = find(A, n);
+                flip(A, index);
+                flip(A, n - 1);
+                list.add(index + 1);
+                list.add(n);
 
+            }
+            return list;
         }
-        return list;
-    }
-    private int find(int[] A, int target){
-        for(int i = 0; i < A.length; i++)
-            if(A[i] == target)
-                return i;
-        return -1;
-    }
-    private void flip(int[] A, int j){
-        int i = 0;
-        while(i < j){
-            int temp = A[i];
-            A[i++] = A[j];
-            A[j--] = temp;
+
+        private int find(int[] A, int target) {
+            for (int i = 0; i < A.length; i++)
+                if (A[i] == target)
+                    return i;
+            return -1;
+        }
+
+        private void flip(int[] A, int j) {
+            int i = 0;
+            while (i < j) {
+                int temp = A[i];
+                A[i++] = A[j];
+                A[j--] = temp;
+            }
         }
     }
 
