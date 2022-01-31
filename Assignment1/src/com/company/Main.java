@@ -301,8 +301,23 @@ public class Main {
         return result;
     }
 
-    // ( HW-10 )
-
+    // 692. Top K Frequent Words ( HW-10 )
+    private List<String> topFrequent(String[] words, int k){
+        Map<String, Integer> wordCount = new HashMap();
+        for(String word : words){
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+        List<String> distinctWords = new ArrayList(wordCount.keySet());
+        distinctWords.sort((word1, word2) -> {
+            int comparision =
+                    wordCount.get(word2).compareTo(wordCount.get(word1));
+            if (comparision == 0) {
+                return word1.compareTo(word2);
+            }
+            return comparision;
+        });
+        return distinctWords.subList(0, k);
+    }
 
 
 
