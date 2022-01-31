@@ -12,8 +12,9 @@ public class Main {
         sortColors(nums1);
         System.out.println(Arrays.toString(nums1));
         int[] a = new int[]{3, 2, 3};
-        System.out.println( new Solution().majorityElement(a));
-
+        System.out.println( new Solution1().majorityElement(a));
+        int[] b = new int[]{3, 0, 6, 1, 5};
+        System.out.println( new Solution2().hIndex(b));
     }
 
     private static void swap(int[] nums1, int a, int b) {
@@ -43,7 +44,7 @@ public class Main {
     }
 
     // 229. Majority Element II ( HW-2 )
-    public static class Solution {
+    public static class Solution1 {
         public List<Integer> majorityElement(int[] nums) {
 
             int count1 = 0;
@@ -89,22 +90,24 @@ public class Main {
     }
 
     // 274. H-Index ( HW-3 )
-    private int hIndex(int[] citations) {
-        if (citations == null || citations.length == 0) {
-            return 0;
-        }
-        int[] counts = new int[citations.length + 1];
-        for (int citation : citations) {
-            counts[Math.min(citation, citations.length)]++;
-        }
-        int citationCount = 0;
-        for (int i = counts.length - 1; i >= 0; i--) {
-            citationCount += counts[i];
-            if (i <= citationCount) {
-                return i;
+    public static class Solution2 {
+        public int hIndex(int[] citations) {
+            if (citations == null || citations.length == 0) {
+                return 0;
             }
+            int[] counts = new int[citations.length + 1];
+            for (int citation : citations) {
+                counts[Math.min(citation, citations.length)]++;
+            }
+            int citationCount = 0;
+            for (int i = counts.length - 1; i >= 0; i--) {
+                citationCount += counts[i];
+                if (i <= citationCount) {
+                    return i;
+                }
+            }
+            return -1;
         }
-        return -1;
     }
 
     // 349. Intersection of Two Arrays ( HW-4 )
