@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.*;
 
+import static java.util.Arrays.asList;
 import static java.util.Arrays.sort;
 
 public class Main {
@@ -51,7 +52,7 @@ public class Main {
 
         String[] words = new String[]{"i", "love", "leetcode", "i", "love", "coding"};
         int f = 2;
-        System.out.println("10. Sort Array by Increasing Frequency");
+        System.out.println("10. Top K Frequent Words");
         System.out.println(new Solution10().topKFrequent(words, f));
 
 
