@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] arr = {6, 5, 3, 1, 8, 7, 2, 4};
+        int[] arr = new int[]{6, 5, 3, 2, 8, 7, 1, 4};
         mergeSort(arr);
         System.out.println(Arrays.toString(arr));
 
@@ -22,9 +22,10 @@ public class Main {
         arr[j] = temp;
     }
 
+    // 1. bubbleSort
     private static void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
+            for (int j = 0; j < arr.length - 1; j++) {
                 if (arr[j] > arr[i]) {
                     swap(arr, i, j);
                 }
@@ -33,6 +34,8 @@ public class Main {
         }
     }
 
+
+    // 2. selectionSort
     //O(n^2)
     private static void selectionSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
@@ -48,11 +51,12 @@ public class Main {
         }
     }
 
-
+    // 3. mergeSort
+    // O( Log n * n ) = O( nLogn )
     private static void mergeSort(int[] arr){
         mergeSort(arr, 0, arr.length -1);
     }
-    // O( Log n * n) = O(nLogn)
+
     private static void mergeSort(int[] arr, int low, int high){
 
         if(low >= high){
