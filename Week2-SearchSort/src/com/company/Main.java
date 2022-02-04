@@ -11,25 +11,30 @@ public class Main {
         System.out.println(binSearchIterative(arr1, 7));
         int[] arr2 = {1, 2, 3, 4, 5, 6, 8};
         System.out.println(binSearchIterative(arr2, 7));
+        int[] arr3 = {7};
+        System.out.println(binSearchIterative(arr3, 7));
 
         //* 2. bin-Search Recursive
-        int[] arr3 = {1, 2, 3, 4, 5, 6, 7, 8};
-        System.out.println(binSearchRecursive(arr3, 7));
-        int[] arr4 = {1, 2, 3, 4, 5, 6, 8};
+        int[] arr4 = {1, 2, 3, 4, 5, 6, 7, 8};
         System.out.println(binSearchRecursive(arr4, 7));
+        int[] arr5 = {1, 2, 3, 4, 5, 6, 8};
+        System.out.println(binSearchRecursive(arr5, 7));
+        int[] arr6 = {7};
+        System.out.println(binSearchRecursive(arr6, 7));
 
     }
 
     /// region Class 2
 
     // 1. bin-Search Iterative
+    // O(log(n))
     private static boolean binSearchIterative(int[] arr, int x){
         if(arr == null || arr.length == 0){
             return false;
         }
         int start = 0;
         int end = arr.length - 1;
-        while(start < end){
+        while(start <= end){
             int mid = (start + end)/2;
             if(arr[mid] == x){
                 return true;
@@ -46,6 +51,7 @@ public class Main {
 
 
     // 2. bin-Search Recursive
+    // O(log(n))
     private static boolean binSearchRecursive(int[] arr, int x) {
         if (arr == null || arr.length == 0) {
             return false;
