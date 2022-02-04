@@ -1,6 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 
 public class Main {
@@ -19,8 +21,12 @@ public class Main {
         //dutchFlag(dutch, 1);
         //System.out.println(Arrays.toString(dutch));
 
-        int[] arr = {1, 1, 1, 0, 0, 1, 2, 2, 2, 3, 1, 1, 1};
-        System.out.println(majorityElement(arr));
+        //int[] arr = {1, 1, 1, 0, 0, 1, 2, 2, 2, 3, 1, 1, 1};
+        //System.out.println(majorityElement(arr));
+
+        int[] arr1 = {1, 3, 5, 7};
+        int[] arr2 = {2, 4, 6, 8};
+        System.out.println(Arrays.toString(mergeSortedArrays(arr1, arr2)));
 
 
     }
@@ -282,9 +288,78 @@ public class Main {
         return majorityElement;
     }
 
-    // 8. dutch sort
+    // 8. wiggleSort
+    // O(nLogn)
+    private static void wiggleSort(int[] arr){
+        Arrays.sort(arr);
+        for(int i = 0; i < arr.length; i = i + 2){
+            swap(arr, i, i + 1);
+        }
+    }
+    // O(n)
+    private static void wiggleSortOn(int[] arr){
+        boolean bValue = true;
+        for(int i = 0; i < arr.length - 1; i ++){
+            if(bValue && arr[i] < arr[i + 1]){
+                swap(arr, i, i + 1);
+            }
+            else if(!bValue && arr[i] > arr[i + 1]){
+                swap(arr, i, i + 1);
+            }
+            bValue = !bValue;
+        }
+    }
 
 
+    private static int[] mergeSortedArrays(int[] arr1, int[] arr2) {
+        if (arr1 == null) {
+            return arr2;
+        }
+        if (arr2 == null) {
+            return arr1;
+        }
+        int[] merged = new int[arr1.length + arr2.length];
+        int ptr1 = 0;
+        int ptr2 = 0;
+        int index = 0;
+
+        while (ptr1 < arr1.length && ptr2 < arr2.length) {
+            if (arr1[ptr1] < arr2[ptr2]) {
+                merged[index++] = arr1[ptr1++];
+            } else {
+                merged[index++] = arr2[ptr2++];
+            }
+        }
+        while (ptr1 < arr1.length) {
+            merged[index++] = arr1[ptr1++];
+        }
+        while (ptr2 < arr2.length) {
+            merged[index++] = arr2[ptr2++];
+        }
+        return merged;
+    }
+
+
+    // 9. PriorityQueue
+    private static int[] mergeKSortedArrays(ArrayList<int[]> listOfArrays){
+        int count = 0;
+        for(int[] arr: listOfArrays){
+            count += arr.length;
+        }
+        int[] merged = new int[count];
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+        for(int[] arr : listOfArrays){
+            for(int i : arr){
+                queue.add(i);
+            }
+        }
+        for(int i = 0; i < merged.length; i ++){
+            merged[i] = queue.remove();
+        }
+        return merged;
+
+    }
 
 
 
