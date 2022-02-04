@@ -7,11 +7,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] arr = new int[]{6, 5, 3, 2, 8, 7, 1, 4};
-        mergeSort(arr);
-        System.out.println(Arrays.toString(arr));
+        //int[] arr = new int[]{6, 5, 3, 2, 8, 7, 1, 4};
+        //insertionSort(arr);
+        //findkThSmallest(arr, 3);
+        //int[] count = {2, 2, 1, 1, 1, 3, 0, 0, 1, 8, 8, 3, 4, 6};
+        //countSort(count, 10);
+        //System.out.println(Arrays.toString(count));
+        //System.out.println(Arrays.toString(arr));
+
+        //int[] dutch = {0, 1, 1, 1, 2, 2, 0, 1, 2, 0, 1, 1};
+        //dutchFlag(dutch, 1);
+        //System.out.println(Arrays.toString(dutch));
+
+        int[] arr = {1, 1, 1, 0, 0, 1, 2, 2, 2, 3, 1, 1, 1};
+        System.out.println(majorityElement(arr));
+
 
     }
+
 
     private static void swap(int[] arr, int i, int j) {
         if (arr == null || i < 0 || j < 0 || i >= arr.length || j >= arr.length || i == j) {
@@ -50,6 +63,7 @@ public class Main {
             }
         }
     }
+
 
     // 3. mergeSort
     // O( Log n * n ) = O( nLogn )
@@ -105,8 +119,170 @@ public class Main {
     }
 
 
+    // 4. quickSort
+    private static void quickSort(int[] arr){
+        quickSort(arr, 0, arr.length -1);
+    }
+    //O(logn * n) = O(nLogn)
+    private static void quickSort(int[] arr, int low, int high){
+        if(low < high){
+            int position = partition(arr, low, high);
+            quickSort(arr, low, position - 1);
+            quickSort(arr, position + 1, high);
+        }
+    }
+    // O(n)
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int wall = low - 1;
+        for (int i = low; i < high; i++) {
+            if (arr[i] < pivot) {
+                wall++;
+                swap(arr, i, wall);
+            }
+        }
+        wall++;
+        swap(arr, wall, high);
+        return wall;
+    }
 
 
+    // 5. insertionSort
+    private static void insertionSort(int[] arr){
+        for(int i = 0; i < arr.length - 1; i ++){
+            if(arr[i] > arr[i + 1]){
+                int index = findPosition(arr, i);
+                moveElements(arr, index, i + 1);
+            }
+        }
+    }
+
+    private static int findPosition(int[] arr, int index){
+        for(int i = 0; i < index - 1; i ++){
+            if(arr[i] < arr[index] && arr[index] > arr[index - 1]){
+                return i;
+            }
+        }
+        return index;
+    }
+
+    private static void moveElements(int[] arr, int from, int to){
+        int temp = arr[to];
+        for(int i = to; i > from; i --){
+            swap(arr, i - 1, i);
+        }
+        arr[from] = temp;
+    }
+    // kTh Largest value
+    public static void findkThLargest(int[] arr, int k){
+        findkThLargest(arr, 0, arr.length - 1, k);
+    }
+
+    public static void findkThLargest(int[] arr, int low, int high, int k){
+        if(low < high){
+            int position = partition(arr, low, high);
+            if(position == arr.length - k){
+                System.out.println("Kth largest value = " + arr[position]);
+                return;
+            }
+            findkThSmallest(arr, low, position - 1, k);
+            findkThSmallest(arr, position + 1, high,k );
+        }
+    }
+
+    // kTh Smallest value
+    public static void findkThSmallest(int[] arr, int k){
+        findkThSmallest(arr, 0, arr.length - 1, k);
+    }
+
+    public static void findkThSmallest(int[] arr, int low, int high, int k){
+        if(low < high){
+            int position = partition(arr, low, high);
+            if(position == k - 1){
+                System.out.println("Kth Smallest value = " + arr[position]);
+                return;
+            }
+            findkThLargest(arr, low, position - 1, k);
+            findkThLargest(arr, position + 1, high,k );
+        }
+
+    }
+
+    // 6. count sort
+    // O(n) provided range is small
+    private static void countSort(int[] arr, int RANGE){
+        int[] countArr = new int[RANGE];
+        for(int j : arr){
+            countArr[j] ++;
+        }
+        int index = 0;
+
+        for(int i = 0; i < RANGE; i ++){
+            while(countArr[i] > 0){
+                arr[index] = i;
+                index ++;
+                countArr[i] --;
+            }
+        }
+    }
+
+    // 7. dutch sort
+    private static void dutchFlag(int[] arr, int pivot){
+        int low = 0;
+        int high = arr.length - 1;
+        int mid = 0;
+
+        while(mid <= high){
+            if(arr[mid] < pivot){
+                swap(arr, mid, low);
+                mid ++;
+                low ++;
+            }
+            else if(arr[mid] == pivot){
+                mid ++;
+            }
+            else{
+                swap(arr, mid, high);
+                high --;
+            }
+        }
+    }
+
+    // majority element
+    public static int majorityElement(int[] arr){
+        int majority = findMajority(arr);
+        int count = 0;
+        for(int i = 0; i < arr.length; i ++){
+            if(arr[i] == majority){
+                count ++;
+            }
+        }
+        if(count >= arr.length/2){
+            return majority;
+        }
+        return Integer.MIN_VALUE;
+
+    }
+
+    private static int findMajority(int[] arr) {
+        int majorityElement = arr[0];
+        int count = 1;
+        for(int i = 1; i < arr.length; i ++){
+            if(arr[i] == majorityElement){
+                count ++;
+            }
+            else{
+                count --;
+                if(count == 0){
+                    majorityElement = arr[i];
+                    count = 1;
+                }
+            }
+        }
+        return majorityElement;
+    }
+
+    // 8. dutch sort
 
 
 
