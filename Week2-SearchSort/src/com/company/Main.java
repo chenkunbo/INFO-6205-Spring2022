@@ -3,11 +3,26 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        // write your code
+
+        //* 1. bin-Search Iterative
+        // SampleClass sample = new SampleClass();
+        // sample.binSearchIterative()
+        int[] arr1 = {1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println(binSearchIterative(arr1, 7));
+        int[] arr2 = {1, 2, 3, 4, 5, 6, 8};
+        System.out.println(binSearchIterative(arr2, 7));
+
+        //* 2. bin-Search Recursive
+        int[] arr3 = {1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println(binSearchRecursive(arr3, 7));
+        int[] arr4 = {1, 2, 3, 4, 5, 6, 8};
+        System.out.println(binSearchRecursive(arr4, 7));
+
     }
 
     /// region Class 2
 
+    // 1. bin-Search Iterative
     private static boolean binSearchIterative(int[] arr, int x){
         if(arr == null || arr.length == 0){
             return false;
@@ -28,6 +43,37 @@ public class Main {
         }
         return false;
     }
+
+
+    // 2. bin-Search Recursive
+    private static boolean binSearchRecursive(int[] arr, int x) {
+        if (arr == null || arr.length == 0) {
+            return false;
+        }
+        return binSearchRecursive(arr, x, 0, arr.length - 1);
+    }
+    private static boolean binSearchRecursive(int[] arr, int x, int start, int end){
+        if(start > end){
+            return false;
+        }
+        int mid = (start + end)/2;
+        if(arr[mid] == x){
+            return true;
+        }
+        else if(arr[mid] < x){
+            return binSearchRecursive(arr, x, mid + 1, end);
+        }
+        else{
+            return binSearchRecursive(arr, x, start, mid - 1);
+        }
+    }
+
+
+
+
+
+
+
 
 
     /// endregion
