@@ -65,6 +65,10 @@ public class Main {
         int[] arr12 = {5, 7, -3, 2, 1, 8};
         System.out.println("question-6 twoSum-int");
         System.out.println( Arrays.toString(twoSum2(arr12, 3)));
+        // question-7 three Values Sum Equal To X
+        int[] arr13 = {5, 7, -3, 2, 1, 8};
+        System.out.println("question-7 three Values Sum Equal To X");
+        System.out.println( Arrays.toString(threeValuesSumEqualToX(arr13, 8)));
 
 
 
@@ -391,7 +395,53 @@ public class Main {
         return result;
     }
 
+    // question-7 three Values Sum Equal To X
+    // with no duplicates
+    private static int[] twoSum(int[] arr, int sum, int start, int end){
+        int[] result = new int[2];
+        result[0] = Integer.MIN_VALUE;
+        result[1] = Integer.MIN_VALUE;
+        if(arr == null || arr.length <= 1){
+            return result;
+        }
+        while(start < end){
+            int total = arr[start] + arr[end];
+            if(total == sum){
+                result[0] = arr[start];
+                result[1] = arr[end];
+                return result;
+            }
+            else if(total < sum){
+                start ++;
+            }
+            else{
+                end --;
+            }
+        }
+        return result;
+    }
 
+    private static int[] threeValuesSumEqualToX(int[] arr, int x){
+        int[] result = new int[3];
+        result[0] = Integer.MIN_VALUE;
+        result[1] = Integer.MIN_VALUE;
+        result[2] = Integer.MIN_VALUE;
+
+        Arrays.sort(arr);
+
+        for(int i = 0; i < arr.length -2; i ++){
+            int[] values = twoSum(arr, (x - arr[i]), i + 1, arr.length - 1);
+            if(values[0] == Integer.MIN_VALUE){
+                continue;
+            }
+            result[0] = arr[i];
+            result[1] = values[0];
+            result[2] = values[1];
+
+            return result;
+        }
+        return result;
+    }
 
 
 
