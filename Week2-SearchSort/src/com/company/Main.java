@@ -21,6 +21,9 @@ public class Main {
         System.out.println(binSearchRecursive(arr5, 7));
         int[] arr6 = {7};
         System.out.println(binSearchRecursive(arr6, 7));
+        // questions
+        int[] arr7 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println(findFirstOccurance(arr7, 1));
 
     }
 
@@ -82,6 +85,23 @@ public class Main {
         return findFirstOccurance(arr, x, 0, arr.length - 1);
     }
     private static int findFirstOccurance(int[] arr, int x, int start, int end){
+        if(arr[start] > x || arr[end] < x){
+            return - 1;
+        }
+        if(arr[start] == x){
+            return start;
+        }
+        int mid = (start + end)/2;
+
+        if(arr[mid] == x){
+            return findFirstOccurance(arr, x, start, mid);
+        }
+        else if(arr[mid] < x){
+            return findFirstOccurance(arr, x, mid + 1, end);
+        }
+        else{
+            return findFirstOccurance(arr, x, start, mid - 1);
+        }
 
     }
 
