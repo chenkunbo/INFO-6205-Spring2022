@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -396,7 +397,7 @@ public class Main {
     }
 
     // question-7 three Values Sum Equal To X
-    // with no duplicates
+    // duplicates return the same result
     private static int[] twoSum(int[] arr, int sum, int start, int end){
         int[] result = new int[2];
         result[0] = Integer.MIN_VALUE;
@@ -420,7 +421,7 @@ public class Main {
         }
         return result;
     }
-
+    // circumstance-1 return array
     private static int[] threeValuesSumEqualToX(int[] arr, int x){
         int[] result = new int[3];
         result[0] = Integer.MIN_VALUE;
@@ -443,6 +444,25 @@ public class Main {
         return result;
     }
 
+    // circumstance-2 return list
+    private static ArrayList<int[]> threeValuesSumEqualToXlist(int[] arr, int x){
+        ArrayList<int[]> list = new ArrayList<>();
+
+        Arrays.sort(arr);
+
+        for(int i = 0; i < arr.length -2; i ++){
+            int[] values = twoSum(arr, (x - arr[i]), i + 1, arr.length - 1);
+            if(values[0] == Integer.MIN_VALUE){
+                continue;
+            }
+            int[] result = new int[3];
+            result[0] = arr[i];
+            result[1] = values[0];
+            result[2] = values[1];
+            list.add(result);
+        }
+        return list;
+    }
 
 
 
