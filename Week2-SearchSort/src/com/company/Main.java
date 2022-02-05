@@ -7,6 +7,7 @@ public class Main {
         //* 1. bin-Search Iterative
         // SampleClass sample = new SampleClass();
         // sample.binSearchIterative()
+        System.out.println("1. bin-Search Iterative");
         int[] arr1 = {1, 2, 3, 4, 5, 6, 7, 8};
         System.out.println(binSearchIterative(arr1, 7));
         int[] arr2 = {1, 2, 3, 4, 5, 6, 8};
@@ -15,25 +16,31 @@ public class Main {
         System.out.println(binSearchIterative(arr3, 7));
 
         //* 2. bin-Search Recursive
+        System.out.println("2. bin-Search Recursive");
         int[] arr4 = {1, 2, 3, 4, 5, 6, 7, 8};
         System.out.println(binSearchRecursive(arr4, 7));
         int[] arr5 = {1, 2, 3, 4, 5, 6, 8};
         System.out.println(binSearchRecursive(arr5, 7));
         int[] arr6 = {7};
         System.out.println(binSearchRecursive(arr6, 7));
+
         // question-1 find First Occurance
         int[] arr7 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println("question-1 find First Occurance");
         System.out.println(findFirstOccurance(arr7, 1));
         // question-2 find Last Occurance
         int[] arr8 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println("question-2 find Last Occurance");
         System.out.println(findLastOccurance(arr8, 1));
         // question-3 find Total Occurance
         int[] arr9 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println("question-3 find Total Occurance");
         System.out.println(findTotalOccurance(arr9, 1));
-        // question-3 find Total Occurance Recursive
+        // question-4 find Total Occurance Recursive
         int[] arr10 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println("question-4 find Total Occurance Recursive");
         System.out.println(findTotalOccuranceRecursive(arr10, 1));
-
+        System.out.println(findTotalOccuranceRecursive(arr10, 8));
 
 
     }
