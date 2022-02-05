@@ -74,6 +74,17 @@ public class Main {
         }
     }
 
+    // Some interview questions
+    private static int findFirstOccurance(int[] arr, int x){
+        if(arr == null || arr.length == 0){
+            return - 1;
+        }
+        return findFirstOccurance(arr, x, 0, arr.length - 1);
+    }
+    private static int findFirstOccurance(int[] arr, int x, int start, int end){
+
+    }
+
 
 
 
