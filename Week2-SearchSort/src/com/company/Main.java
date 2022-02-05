@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -29,18 +31,21 @@ public class Main {
         System.out.println("question-1 find First Occurance");
         System.out.println(findFirstOccurance(arr7, 1));
         // question-2 find Last Occurance
-        int[] arr8 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
         System.out.println("question-2 find Last Occurance");
-        System.out.println(findLastOccurance(arr8, 1));
+        System.out.println(findLastOccurance(arr7, 1));
         // question-3 find Total Occurance
-        int[] arr9 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
         System.out.println("question-3 find Total Occurance");
-        System.out.println(findTotalOccurance(arr9, 1));
+        System.out.println(findTotalOccurance(arr7, 1));
         // question-4 find Total Occurance Recursive
-        int[] arr10 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
         System.out.println("question-4 find Total Occurance Recursive");
-        System.out.println(findTotalOccuranceRecursive(arr10, 1));
-        System.out.println(findTotalOccuranceRecursive(arr10, 8));
+        System.out.println(findTotalOccuranceRecursive(arr7, 1));
+        System.out.println(findTotalOccuranceRecursive(arr7, 8));
+
+        //* 3. rotate Array
+        int[] arr8 = {1, 2, 3, 4, 5, 6, 7};
+        rotateArray(arr8, 3);
+        System.out.println("3. rotate Array");
+        System.out.println(Arrays.toString(arr8));
 
 
     }
@@ -198,6 +203,33 @@ public class Main {
         }
     }
 
+    // 3. rotate Array
+    private static void reverse(int[] arr, int start, int end){
+        if(arr == null || arr.length == 0 || start >= end || start < 0 || end > arr.length - 1){
+            return;
+        }
+        while(start < end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start ++;
+            end --;
+        }
+    }
+    private static void rotateArray(int[] arr, int n){
+        if(arr == null || arr.length <= 1){
+            return;
+        }
+        n = n % arr.length;
+
+        // Step 1 : reverse the entire array
+        reverse(arr, 0, arr.length - 1);
+        // Step 2 : reverse from 0 to n-1
+        reverse(arr, 0, n - 1);
+        // Step 3 : reverse from n to arr.length -1
+        reverse(arr, n, arr.length - 1);
+
+    }
 
 
 
