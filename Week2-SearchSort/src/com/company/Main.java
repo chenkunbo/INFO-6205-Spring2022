@@ -27,6 +27,15 @@ public class Main {
         // question-2 find Last Occurance
         int[] arr8 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
         System.out.println(findLastOccurance(arr8, 1));
+        // question-3 find Total Occurance
+        int[] arr9 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println(findTotalOccurance(arr9, 1));
+        // question-3 find Total Occurance Recursive
+        int[] arr10 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println(findTotalOccuranceRecursive(arr10, 1));
+
+
+
     }
 
     /// region Class 2
@@ -135,6 +144,51 @@ public class Main {
             return findLastOccurance(arr, x, start, mid - 1);
         }
 
+    }
+
+    // question-3 find Total Occurance
+    private static int findTotalOccurance(int[] arr, int x) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        // O(log(n))
+        int first = findFirstOccurance(arr, x);
+        if(first == -1){
+            return 0;
+        }
+        // O(log(n))
+        int last = findLastOccurance(arr, x);
+
+        return (last - first + 1);
+    }
+
+    // question-4 find Total Occurance Recursive
+    // O(log(n))
+    private static int findTotalOccuranceRecursive(int[] arr, int x){
+        if(arr == null || arr.length == 0){
+            return 0;
+        }
+        return findTotalOccuranceRecursive(arr, x, 0, arr.length - 1);
+    }
+    private static int findTotalOccuranceRecursive(int[] arr, int x, int start, int end){
+        if(arr[start] > x || arr[end] < x){
+            return 0;
+        }
+        if(arr[start] == x && arr[end] == x){
+            return (end - start + 1);
+        }
+        int mid = (start + end)/2;
+
+        if(arr[mid] == x){
+            return 1 + findTotalOccuranceRecursive(arr, x, start, mid - 1)+
+                    findTotalOccuranceRecursive(arr, x, mid + 1, end);
+        }
+        else if(arr[mid] < x){
+            return findTotalOccuranceRecursive(arr, x, mid + 1, end);
+        }
+        else{
+            return findTotalOccuranceRecursive(arr, x, start, mid - 1);
+        }
     }
 
 
