@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Stack;
 
 public class Main {
 
@@ -70,6 +72,19 @@ public class Main {
         int[] arr13 = {5, 7, -3, 2, 1, 8};
         System.out.println("question-7 three Values Sum Equal To X");
         System.out.println( Arrays.toString(threeValuesSumEqualToX(arr13, 8)));
+        // question-8 merge intervals
+        ArrayList<Interval> list = new ArrayList<>();
+        list.add(new Interval(1, 3));
+        list.add(new Interval(2, 6));
+        list.add(new Interval(8, 10));
+        list.add(new Interval(15, 18));
+        ArrayList<Interval> merged = mergeIntervals(list);
+        System.out.println("question-8 merge intervals");
+        for(Interval interval : merged){
+            System.out.println("[" + interval.start + "," + interval.end + "]");
+        }
+        //System.out.println(merged.toArray());
+        //System.out.println(Arrays.toString(merged.toArray()));
 
 
 
@@ -465,8 +480,41 @@ public class Main {
     }
 
 
+    // question-8 merge intervals
+    private static ArrayList<Interval> mergeIntervals(ArrayList<Interval> intervals){
+        if(intervals == null || intervals.size() <= 1){
+            return intervals;
+        }
+        // Sort the intervals based on start times
+        intervals.sort(new Comparator<Interval>(){
+            @Override
+            public int compare(Interval interval1, Interval interval2){
+                return Integer.compare(interval1.start, interval2.start);
+            }
+        });
 
+        ArrayList<Interval> list = new ArrayList<>();
+        Stack<Interval> stack = new Stack<>();
+        stack.push(intervals.get(0));
+        for(int i = 1; i < intervals.size(); i ++){
+            Interval interval = intervals.get(i);
 
+            if(stack.peek().end > interval.start && interval.end > stack.peek().end){
+                // Intervals overlap
+                Interval push = new Interval(stack.pop().start, interval.end);
+                stack.push(push);
+            }
+            else if(stack.peek().end < interval.start){
+                // Intervals don't overlap
+                stack.push(interval);
+            }
+        }
+        while(!stack.isEmpty()){
+            list.add(0, stack.pop());
+        }
+        return list;
+
+    }
 
 
 
