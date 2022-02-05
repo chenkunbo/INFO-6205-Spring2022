@@ -48,16 +48,21 @@ public class Main {
         System.out.println(Arrays.toString(arr8));
 
         //* 4. find Rotated Index
-        int[] arr9 = {5, 6, 7, 1, 2, 3, 4};
+        int[] arr9 = {7, 1, 2, 3, 4, 5, 6};
         System.out.println("4. find Rotated Index");
         System.out.println(findRotatedIndex(arr9));
+
+        //* 5. find Index In Sorted Rotated Array
+        int[] arr10 = { 5, 6, 7, 1, 2, 3, 4};
+        System.out.println("5. find Index In Sorted Rotated Array");
+        System.out.println(findIndexInSortedRotatedArray(arr10, 6));
 
 
     }
 
     /// region Class 2
 
-    // 1. bin-Search Iterative
+    //* 1. bin-Search Iterative
     // O(log(n))
     private static boolean binSearchIterative(int[] arr, int x){
         if(arr == null || arr.length == 0){
@@ -81,7 +86,7 @@ public class Main {
     }
 
 
-    // 2. bin-Search Recursive
+    //* 2. bin-Search Recursive
     // O(log(n))
     private static boolean binSearchRecursive(int[] arr, int x) {
         if (arr == null || arr.length == 0) {
@@ -208,7 +213,7 @@ public class Main {
         }
     }
 
-    // 3. rotate Array
+    //* 3. rotate Array
     private static void reverse(int[] arr, int start, int end){
         if(arr == null || arr.length == 0 || start >= end || start < 0 || end > arr.length - 1){
             return;
@@ -236,13 +241,17 @@ public class Main {
 
     }
 
-    // 4. find Rotated Index
+    //* 4. find Rotated Index
     private static int findRotatedIndex(int[] arr){
         if(arr == null || arr.length == 0){
             return -1;
         }
         if(arr.length == 1){
             return 0;
+        }
+        // Array is already properly sorted and there are no duplicates
+        if(arr[0] < arr[arr.length - 1]){
+            return -1;
         }
         return findRotatedIndex(arr, 0, arr.length - 1);
     }
@@ -261,6 +270,62 @@ public class Main {
             // right half is properly sorted
             return findRotatedIndex(arr, start, mid);
         }
+    }
+
+    //* 5. find Index In Sorted Rotated Array
+    private static int binSearch(int[] arr, int x){
+        if(arr == null || arr.length == 0){
+            return -1;
+        }
+        return binSearch(arr, x, 0, arr.length -1);
+
+    }
+    private static int binSearch(int[] arr, int x, int start, int end){
+        if(start > end){
+            return -1;
+        }
+        int mid = (start + end)/2;
+        if(arr[mid] == x){
+            return mid;
+        }
+        else if(arr[mid] < x){
+            return binSearch(arr, x, mid + 1, end);
+        }
+        else{
+            return binSearch(arr, x, start, mid - 1);
+        }
+
+    }
+    private static int findIndexInSortedRotatedArray(int[] arr, int x){
+        if(arr == null || arr.length == 0){
+            return -1;
+        }
+        if(arr.length == 1){
+            return arr[0] ==x ? 0 : -1;
+        }
+
+        int index = findRotatedIndex(arr);
+
+        // if the array was not rotated
+        if(index == -1){
+            return binSearch(arr, x);
+        }
+
+        // if the array was rotated we will look for edge conditions first
+        if(arr[index] < x){
+            // largest value is smaller than x
+            return -1;
+        }
+        if(arr[index + 1] > x){
+            // smallest value is bigger than x
+            return -1;
+        }
+        // see where should we look for the value
+        if(x > arr[0]){
+            return binSearch(arr, x, 0, index);
+        }
+        return binSearch(arr, x, index + 1, arr.length - 1);
+
     }
 
 
