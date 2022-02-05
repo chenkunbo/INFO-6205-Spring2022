@@ -21,10 +21,12 @@ public class Main {
         System.out.println(binSearchRecursive(arr5, 7));
         int[] arr6 = {7};
         System.out.println(binSearchRecursive(arr6, 7));
-        // questions
+        // question-1 find First Occurance
         int[] arr7 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
         System.out.println(findFirstOccurance(arr7, 1));
-
+        // question-2 find Last Occurance
+        int[] arr8 = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 5, 5, 5, 7, 9, 9, 11};
+        System.out.println(findLastOccurance(arr8, 1));
     }
 
     /// region Class 2
@@ -77,7 +79,8 @@ public class Main {
         }
     }
 
-    // Some interview questions
+    // question-1 find First Occurance
+    // O(log(n))
     private static int findFirstOccurance(int[] arr, int x){
         if(arr == null || arr.length == 0){
             return - 1;
@@ -105,7 +108,34 @@ public class Main {
 
     }
 
+    // question-2 find Last Occurance
+    // O(log(n))
+    private static int findLastOccurance(int[] arr, int x){
+        if(arr == null || arr.length == 0){
+            return - 1;
+        }
+        return findLastOccurance(arr, x, 0, arr.length - 1);
+    }
+    private static int findLastOccurance(int[] arr, int x, int start, int end){
+        if(arr[start] > x || arr[end] < x){
+            return - 1;
+        }
+        if(arr[end] == x){
+            return end;
+        }
+        int mid = (start + end)/2;
 
+        if(arr[mid] == x){
+            return findLastOccurance(arr, x, mid, end);
+        }
+        else if(arr[mid] < x){
+            return findLastOccurance(arr, x, mid + 1, end);
+        }
+        else{
+            return findLastOccurance(arr, x, start, mid - 1);
+        }
+
+    }
 
 
 
