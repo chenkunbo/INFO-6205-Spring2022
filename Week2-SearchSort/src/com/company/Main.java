@@ -57,10 +57,15 @@ public class Main {
         System.out.println("5. find Index In Sorted Rotated Array");
         System.out.println(findIndexInSortedRotatedArray(arr10, 6));
 
-        // question-5 two sum
+        // question-5 two sum - boolean
         int[] arr11 = {5, 7, -3, 2, 1, 8};
-        System.out.println("question-5 two sum");
-        System.out.println(twoSum(arr11, 3));
+        System.out.println("question-5 twoSum-boolean");
+        System.out.println(twoSum1(arr11, 3));
+        // question-6 two sum - int
+        int[] arr12 = {5, 7, -3, 2, 1, 8};
+        System.out.println("question-6 twoSum-int");
+        System.out.println( Arrays.toString(twoSum2(arr12, 3)));
+
 
 
     }
@@ -334,8 +339,8 @@ public class Main {
     }
 
 
-    // question-5 two sum ( leetcode easy question )
-    private static boolean twoSum(int[] arr, int sum){
+    // question-5 two sum - boolean ( leetcode easy question )
+    private static boolean twoSum1(int[] arr, int sum){
         if(arr == null || arr.length <= 1){
             return false;
         }
@@ -356,6 +361,34 @@ public class Main {
             }
         }
         return false;
+    }
+    // question-6 two sum - int
+    private static int[] twoSum2(int[] arr, int sum){
+        int[] result = new int[2];
+        result[0] = Integer.MIN_VALUE;
+        result[1] = Integer.MIN_VALUE;
+        if(arr == null || arr.length <= 1){
+            return result;
+        }
+        Arrays.sort(arr);
+        int start = 0;
+        int end = arr.length -1;
+
+        while(start < end){
+            int total = arr[start] + arr[end];
+            if(total == sum){
+                result[0] = arr[start];
+                result[1] = arr[end];
+                return result;
+            }
+            else if(total < sum){
+                start ++;
+            }
+            else{
+                end --;
+            }
+        }
+        return result;
     }
 
 
