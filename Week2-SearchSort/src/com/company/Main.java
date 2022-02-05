@@ -57,6 +57,11 @@ public class Main {
         System.out.println("5. find Index In Sorted Rotated Array");
         System.out.println(findIndexInSortedRotatedArray(arr10, 6));
 
+        // question-5 two sum
+        int[] arr11 = {5, 7, -3, 2, 1, 8};
+        System.out.println("question-5 two sum");
+        System.out.println(twoSum(arr11, 3));
+
 
     }
 
@@ -327,6 +332,33 @@ public class Main {
         return binSearch(arr, x, index + 1, arr.length - 1);
 
     }
+
+
+    // question-5 two sum ( leetcode easy question )
+    private static boolean twoSum(int[] arr, int sum){
+        if(arr == null || arr.length <= 1){
+            return false;
+        }
+        Arrays.sort(arr);
+        int start = 0;
+        int end = arr.length - 1;
+
+        while(start < end){
+            int total = arr[start] + arr[end];
+            if(total == sum){
+                return true;
+            }
+            else if(total < sum){
+                start ++;
+            }
+            else{
+                end --;
+            }
+        }
+        return false;
+    }
+
+
 
 
 
