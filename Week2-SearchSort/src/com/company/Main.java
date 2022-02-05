@@ -47,6 +47,11 @@ public class Main {
         System.out.println("3. rotate Array");
         System.out.println(Arrays.toString(arr8));
 
+        //* 4. find Rotated Index
+        int[] arr9 = {5, 6, 7, 1, 2, 3, 4};
+        System.out.println("4. find Rotated Index");
+        System.out.println(findRotatedIndex(arr9));
+
 
     }
 
@@ -230,6 +235,37 @@ public class Main {
         reverse(arr, n, arr.length - 1);
 
     }
+
+    // 4. find Rotated Index
+    private static int findRotatedIndex(int[] arr){
+        if(arr == null || arr.length == 0){
+            return -1;
+        }
+        if(arr.length == 1){
+            return 0;
+        }
+        return findRotatedIndex(arr, 0, arr.length - 1);
+    }
+    private static int findRotatedIndex(int[] arr, int start, int end){
+        // no duplicates
+        if(arr[start] == arr[end]){
+            return start;
+        }
+
+        int mid = (start + end)/2;
+        if(arr[mid] > arr[start]){
+            // left half is properly sorted
+            return findRotatedIndex(arr, mid, end);
+        }
+        else{
+            // right half is properly sorted
+            return findRotatedIndex(arr, start, mid);
+        }
+    }
+
+
+
+
 
 
 
