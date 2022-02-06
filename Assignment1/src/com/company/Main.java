@@ -9,47 +9,57 @@ import static java.util.Arrays.sort;
 public class Main {
 
     public static void main(String[] args) {
+        // 75. Sort Colors ( HW-1 )
         int[] nums1 = {2, 0, 2, 1, 1, 0};
         sortColors(nums1);
         System.out.println("1. Sort Colors");
         System.out.println(Arrays.toString(nums1));
 
+        // 229. Majority Element II ( HW-2 )
         int[] a = new int[]{3, 2, 3};
         System.out.println("2. Majority Element II");
         System.out.println( new Solution2().majorityElement(a));
 
+        // 274. H-Index ( HW-3 )
         int[] b = new int[]{3, 0, 6, 1, 5};
         System.out.println("3. H-Index");
         System.out.println( new Solution3().hIndex(b));
 
+        // 349. Intersection of Two Arrays ( HW-4 )
         int[] c = {4, 9, 5};
         int[] d = {9, 4, 9, 8, 4};
         System.out.println("4. Intersection of Two Arrays");
         System.out.println(Arrays.toString(new Solution4().intersection(c, d)));
 
+        // 658. Find K Closest Elements ( HW-5 )
         int[] arr = {1, 2, 3, 4, 5};
         int k = 4;
         int x = 3;
         System.out.println("5. Find K Closest Elements");
         System.out.println(new Solution5().findClosestElements(arr, k, x));
 
+        // 767. Reorganize String ( HW-6 )
         String s = "aab";
         System.out.println("6. Reorganize String");
         System.out.println(new Solution6().reorganizeString(s));
 
+        // 791. Custom Sort String ( HW-7 )
         String order = "cbafg";
         String ss = "abcd";
         System.out.println("7. Custom Sort String");
         System.out.println(new Solution7().customSortString(order, ss));
 
+        // 969. Pancake Sorting ( HW-8 )
         int[] arr2 = {3, 2, 4, 1};
         System.out.println("8. Pancake Sorting");
         System.out.println(new Solution8().pancakeSort(arr2));
 
+        // 1636. Sort Array by Increasing Frequency ( HW-9 )
         int[] e = {1, 1, 2, 2, 2, 3};
         System.out.println("9. Sort Array by Increasing Frequency");
         System.out.println(Arrays.toString(new Solution9().frequencySort(e)));
 
+        // 692. Top K Frequent Words ( HW-10 )
         String[] words = new String[]{"i", "love", "leetcode", "i", "love", "coding"};
         int f = 2;
         System.out.println("10. Top K Frequent Words");
