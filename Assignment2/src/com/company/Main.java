@@ -21,6 +21,17 @@ public class Main {
         System.out.println("2. Single Element in a Sorted Array");
         System.out.println(singleNonDuplicate(nums3));
         System.out.println(singleNonDuplicate(nums4));
+
+        //* 153. Find Minimum in Rotated Sorted Array ( HW-3 )
+        int[] nums5 = {3, 4, 5, 1, 2};
+        int[] nums6 = {4, 5, 6, 7, 0, 1, 2};
+        System.out.println("3. Find Minimum in Rotated Sorted Array");
+        System.out.println(findMin(nums5));
+        System.out.println(findMin(nums6));
+
+
+
+
     }
 
 /// region code assignment-2
@@ -83,6 +94,27 @@ public class Main {
     }
 
     //* 153. Find Minimum in Rotated Sorted Array ( HW-3 )
+    private static int findMin(int[] nums5){
+
+        int l = 0;
+        int r = nums5.length - 1;
+
+        if(nums5[l] < nums5[r]){
+            return nums5[l];
+        }
+        while(l + 1 < r){
+            int mid = l + (r - l)/2;
+            if(nums5[mid] > nums5[r]){
+                l = mid;
+            }
+            else{
+                r = mid;
+            }
+        }
+        return Math.min(nums5[l], nums5[r]);
+    }
+
+
 
 
 
