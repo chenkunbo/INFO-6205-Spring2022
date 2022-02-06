@@ -32,10 +32,11 @@ public class Main {
         System.out.println(findMin(nums6));
 
         //* 253. Meeting Rooms II ( HW-4 )
-        int[][] intervals = {{0,30}, {5,10}, {15,20}};
+        int[][] intervals1 = {{0,30}, {5,10}, {15,20}};
+        int[][] intervals2 = {{7,10}, {2,4}};
         System.out.println("4. Meeting Rooms II");
-        System.out.println(minMeetingRooms(intervals));
-
+        System.out.println(minMeetingRooms(intervals1));
+        System.out.println(minMeetingRooms(intervals2));
 
 
     }
