@@ -1,6 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Main {
 
@@ -29,6 +31,10 @@ public class Main {
         System.out.println(findMin(nums5));
         System.out.println(findMin(nums6));
 
+        //* 253. Meeting Rooms II ( HW-4 )
+        int[][] intervals = {{0,30}, {5,10}, {15,20}};
+        System.out.println("4. Meeting Rooms II");
+        System.out.println(minMeetingRooms(intervals));
 
 
 
@@ -112,6 +118,28 @@ public class Main {
             }
         }
         return Math.min(nums5[l], nums5[r]);
+    }
+
+    //* 253. Meeting Rooms II ( HW-4 )
+    private static int minMeetingRooms(int[][] intervals){
+        // sort array by the start time
+        Arrays.sort(intervals, (a,b)-> a[0] - b[0]);
+
+        // min heap to keep track of the end time
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // find min rooms
+        minHeap.add(intervals[0][1]);
+        for(int i = 1; i < intervals.length; i ++){
+            int[] cur = intervals[i];
+            if(minHeap.peek() <- cur[0]){
+                minHeap.poll();
+            }
+            minHeap.add(cur[1]);
+        }
+        // return min rooms
+        return minHeap.size();
+
     }
 
 
