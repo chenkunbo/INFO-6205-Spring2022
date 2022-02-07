@@ -60,8 +60,8 @@ public class Main {
         int[][] intervals4 = {{1,2}, {3,5}, {6,7}, {8,10}, {12,16}};
         int[] newInterval2 = {4,8};
         System.out.println("7. Insert Interval");
-        System.out.println(insert(intervals3, newInterval1));
-        System.out.println(insert(intervals4, newInterval2));
+        System.out.println(Arrays.deepToString(insert(intervals3, newInterval1)));
+        System.out.println(Arrays.deepToString(insert(intervals4, newInterval2)));
 
 
 
