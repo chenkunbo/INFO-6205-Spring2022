@@ -79,10 +79,14 @@ public class Main {
         System.out.println(Arrays.deepToString(intervalIntersectin(firstList1, secondList1)));
         System.out.println(Arrays.deepToString(intervalIntersectin(firstList2, secondList2)));
 
-
-
-
-
+        //* 18. 4Sum ( HW-10 )
+        int[] nums10 = {1, 0, -1, 0, -2, 2};
+        int target4 = 0;
+        int[] nums11 = {2, 2, 2, 2, 2};
+        int target5 = 8;
+        System.out.println("10. 4Sum");
+        System.out.println(fourSum(nums10, target4));
+        System.out.println(fourSum(nums11, target5));
 
 
     }
@@ -331,15 +335,55 @@ public class Main {
         return res.toArray(new int[res.size()][2]);
     }
 
-
-
-
-
-
-
-
-
-
+    //* 18. 4Sum ( HW-10 )
+    private static List<List<Integer>> fourSum(int[] nums, int target){
+        List<List<Integer>> result = new ArrayList<>();
+        // corner case
+        if(nums.length < 4){
+            return result;
+        }
+        Arrays.sort(nums);
+        // skip duplicates
+        for(int i = 0; i < nums.length - 3; i++){
+            if(i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+            for(int j = i + 1; j < nums.length - 2; j++){
+                if(j > i + 1 && nums[j] == nums[j - 1]){
+                    continue;
+                }
+                int k = j + 1;
+                int l = nums.length -1 ;
+                while(k < l){
+                    int sum = nums[i] + nums[j] + nums[k] + nums[l];
+                    if(sum < target){
+                        k ++;
+                        while(nums[k] == nums[k - 1] && k < l){
+                            k ++;
+                        }
+                    }
+                    else if(sum > target){
+                        l --;
+                        while(nums[l] == nums[l + 1] && k < l){
+                            l --;
+                        }
+                    }
+                    else{
+                        result.add(Arrays.asList(nums[i], nums[j], nums[k], nums[l]));
+                        k ++;
+                        l --;
+                        while(nums[k] == nums[k -1] && k < 1){
+                            k ++;
+                        }
+                        while(nums[l] == nums[l + 1] && k < 1){
+                            l --;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
 
 /// endregion
