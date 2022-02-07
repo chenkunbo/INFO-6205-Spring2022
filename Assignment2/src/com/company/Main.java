@@ -63,8 +63,12 @@ public class Main {
         System.out.println(Arrays.deepToString(insert(intervals3, newInterval1)));
         System.out.println(Arrays.deepToString(insert(intervals4, newInterval2)));
 
-
-
+        //* 435. Non-overlapping Intervals ( HW-8 )
+        int[][] intervals5 = {{1,2}, {2,3}, {3,4}, {1,3}};
+        int[][] intervals6 = {{1,2}, {1,2}, {1,2}};
+        System.out.println("8. Non-overlapping Intervals");
+        System.out.println(eraseOverlapIntervals(intervals5));
+        System.out.println(eraseOverlapIntervals(intervals6));
 
 
     }
@@ -251,6 +255,35 @@ public class Main {
         }
         return list.toArray(new int[list.size()][2]);
     }
+
+    //* 435. Non-overlapping Intervals ( HW-8 )
+    private static int eraseOverlapIntervals(int[][] intervals){
+        if(intervals.length == 0 || intervals[0].length == 0){
+            return 0;
+        }
+        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+        int counter = 0;
+        int[] pre = intervals[0];
+        for(int i = 1; i < intervals.length; i++){
+            if(pre[1] > intervals[i][0]){
+                // there is overlapping
+                counter ++;
+                if(pre[1] > intervals[i][1]){
+                    pre = intervals[i];
+                }
+            }
+            else{
+                pre = intervals[i];
+            }
+        }
+        return counter;
+    }
+
+
+
+
+
+
 
 
 
