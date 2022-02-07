@@ -54,6 +54,14 @@ public class Main {
         System.out.println("6. 3Sum Closest");
         System.out.println(threeSumClosest(nums9, target3));
 
+        //* 57. Insert Interval ( HW-7 )
+        int[][] intervals3 = {{1,3}, {6,9}};
+        int[] newInterval1 = {2,5};
+        int[][] intervals4 = {{1,2}, {3,5}, {6,7}, {8,10}, {12,16}};
+        int[] newInterval2 = {4,8};
+        System.out.println("7. Insert Interval");
+        System.out.println(insert(intervals3, newInterval1));
+        System.out.println(insert(intervals4, newInterval2));
 
 
 
