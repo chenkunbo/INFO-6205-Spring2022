@@ -70,6 +70,20 @@ public class Main {
         System.out.println(eraseOverlapIntervals(intervals5));
         System.out.println(eraseOverlapIntervals(intervals6));
 
+        //* 986. Interval List Intersections ( HW-9 )
+        int[][] firstList1 = {{0,2}, {5,10}, {13,23}, {24,25}};
+        int[][] secondList1 = {{1,5}, {8,12}, {15,24}, {25,26}};
+        int[][] firstList2 = {{1,3}, {5,9}};
+        int[][] secondList2 = {};
+        System.out.println("9. Interval List Intersections");
+        System.out.println(Arrays.deepToString(intervalIntersectin(firstList1, secondList1)));
+        System.out.println(Arrays.deepToString(intervalIntersectin(firstList2, secondList2)));
+
+
+
+
+
+
 
     }
 
@@ -280,7 +294,42 @@ public class Main {
     }
 
 
+    //* 986. Interval List Intersections ( HW-9 )
+    private static int[][] intervalIntersectin(int[][] firstList, int[][] secondList){
+        // define res list
+        List<int[]> res = new LinkedList<>();
 
+        // define n1 and n2
+        int n1 = firstList.length;
+        int n2 = secondList.length;
+
+        // define pointers
+        int i = 0;
+        int j = 0;
+
+        // find interval intersection
+        while(i < n1 && j < n2){
+            int s1 = firstList[i][0];
+            int e1 = firstList[i][1];
+            int s2 = firstList[j][0];
+            int e2 = firstList[j][1];
+            // add intersection
+            if(s1 <= s2 && s2 <= e1 || s2 <= s1 && s1 <= e2){
+                int s = Math.max(s1, s2);
+                int e = Math.min(e1, e2);
+                int[] cur = {s, e};
+                res.add(cur);
+            }
+            // move pointers
+            if(e2 > e1){
+                i ++;
+            }
+            else{
+                j ++;
+            }
+        }
+        return res.toArray(new int[res.size()][2]);
+    }
 
 
 
