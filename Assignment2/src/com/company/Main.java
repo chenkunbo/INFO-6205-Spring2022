@@ -2,6 +2,9 @@ package com.company;
 
 import java.util.*;
 
+import static java.lang.Math.*;
+import static java.lang.Math.abs;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -44,6 +47,17 @@ public class Main {
         System.out.println("5. Top K Frequent Elements");
         System.out.println(Arrays.toString(topKFrequent(nums7, k1)));
         System.out.println(Arrays.toString(topKFrequent(nums8, k2)));
+
+        //* 16. 3Sum Closest ( HW-6 )
+        int[] nums9 = {-1, 2, 1, -4};
+        int target3 = 1;
+        System.out.println("6. 3Sum Closest");
+        System.out.println(threeSumClosest(nums9, target3));
+
+
+
+
+
 
     }
 
@@ -124,7 +138,7 @@ public class Main {
                 r = mid;
             }
         }
-        return Math.min(nums[l], nums[r]);
+        return min(nums[l], nums[r]);
     }
 
     //* 253. Meeting Rooms II ( HW-4 )
@@ -181,6 +195,29 @@ public class Main {
     }
 
     //* 16. 3Sum Closest ( HW-6 )
+    private static int threeSumClosest(int[] nums, int target){
+        int res = nums[0] + nums[1] + nums[nums.length - 1];
+        Arrays.sort(nums);
+
+        for(int i = 0; i < nums.length - 2; i ++){
+            int a_pointer = i + 1;
+            int b_pointer = nums.length - 1;
+
+            while(a_pointer < b_pointer){
+                int current_sum = nums[i] + nums[a_pointer] + nums[b_pointer];
+                if(current_sum > target){
+                    b_pointer -= 1;
+                }
+                else{
+                    a_pointer += 1;
+                }
+                if(Math.abs(current_sum - target) < Math.abs(res - target)){
+                    res = current_sum;
+                }
+            }
+        }
+        return res;
+    }
 
 
 
