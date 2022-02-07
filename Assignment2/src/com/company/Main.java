@@ -44,16 +44,16 @@ public class Main {
 /// region code assignment-2
 
     //* 35. Search Insert Position ( HW-1 )
-    private static int searchInsearch(int[] nums1, int target){
+    private static int searchInsearch(int[] nums, int target){
         int l = 0;
-        int r = nums1.length - 1;
+        int r = nums.length - 1;
 
         while(l <= r){
             int midIndex = (l + r)/2;
-            if(nums1[midIndex] == target){
+            if(nums[midIndex] == target){
                 return midIndex;
             }
-            else if(nums1[midIndex] > target){
+            else if(nums[midIndex] > target){
                 r = midIndex - 1;
             }
             else{
@@ -64,10 +64,10 @@ public class Main {
     }
 
     //* 540. Single Element in a Sorted Array ( HW-2 )
-    private static int singleNonDuplicate(int[] nums3){
+    private static int singleNonDuplicate(int[] nums){
 
         int start = 0;
-        int end = nums3.length - 1;
+        int end = nums.length - 1;
 
         while(start <= end){
             /*
@@ -77,11 +77,11 @@ public class Main {
             int mid = start + ( end - start)/2;
 
             if(start == end){
-                return nums3[start];
+                return nums[start];
             }
             else if(mid % 2 == 0){
 
-                if(nums3[mid] == nums3[mid + 1]){
+                if(nums[mid] == nums[mid + 1]){
                     start = mid + 2;
                 }
                 else{
@@ -89,7 +89,7 @@ public class Main {
                 }
             }
             else{
-                if(nums3[mid] == nums3[mid - 1]){
+                if(nums[mid] == nums[mid - 1]){
                     start = mid + 1;
                 }
                 else{
@@ -101,49 +101,27 @@ public class Main {
     }
 
     //* 153. Find Minimum in Rotated Sorted Array ( HW-3 )
-    private static int findMin(int[] nums5){
+    private static int findMin(int[] nums){
 
         int l = 0;
-        int r = nums5.length - 1;
+        int r = nums.length - 1;
 
-        if(nums5[l] < nums5[r]){
-            return nums5[l];
+        if(nums[l] < nums[r]){
+            return nums[l];
         }
         while(l + 1 < r){
             int mid = l + (r - l)/2;
-            if(nums5[mid] > nums5[r]){
+            if(nums[mid] > nums[r]){
                 l = mid;
             }
             else{
                 r = mid;
             }
         }
-        return Math.min(nums5[l], nums5[r]);
+        return Math.min(nums[l], nums[r]);
     }
 
     //* 253. Meeting Rooms II ( HW-4 )
-    /*
-    private static int minMeetingRooms(int[][] intervals){
-        // sort array by the start time
-        Arrays.sort(intervals, (a,b)-> a[0] - b[0]);
-
-        // min heap to keep track of the end time
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-
-        // find min rooms
-        minHeap.add(intervals[0][1]);
-        for(int i = 1; i < intervals.length; i ++){
-            int[] cur = intervals[i];
-            if(minHeap.peek() <- cur[0]){
-                minHeap.poll();
-            }
-            minHeap.add(cur[1]);
-        }
-        // return min rooms
-        return minHeap.size();
-
-    }
-     */
     private static int minMeetingRooms(int[][] intervals){
         Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
 
@@ -172,7 +150,9 @@ public class Main {
 
 
     //* 347. Top K Frequent Elements ( HW-5 )
+    private static int topKFrequent(int[] nums, int k){
 
+    }
 
 
 
