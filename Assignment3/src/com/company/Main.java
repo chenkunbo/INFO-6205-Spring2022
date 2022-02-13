@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // 2. Add Two Numbers
 
 
     }
@@ -19,14 +20,14 @@ public class Main {
             int y = q != null ? q.val : 0;
             int sum = x + y + carry;
             carry = sum/10;
-            curr.next = new LiatNode(sum % 10);
+            curr.next = new ListNode(sum % 10);
             curr = curr.next;
             if(p != null) p = p.next;
             if(q != null) q = q.next;
 
         }
         if(carry > 0){
-            curr.next = new LiatNode(carry);
+            curr.next = new ListNode(carry);
         }
         return dummy.next;
 
