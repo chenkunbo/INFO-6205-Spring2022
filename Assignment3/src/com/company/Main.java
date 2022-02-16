@@ -53,7 +53,7 @@ public class Main {
 
 
     // 138. Copy List with Random Pointer.
-    // define a Node class
+    // first define a Node class
     public Node copyRandomList(Node head){
         HashMap<Node, Node> map = new HashMap<>();
 
