@@ -1,10 +1,12 @@
 package com.company;
 
+import org.w3c.dom.Node;
+
+import java.util.HashMap;
+
 public class Main {
 
     public static void main(String[] args) {
-
-        // 2. Add Two Numbers
 
 
     }
@@ -17,7 +19,7 @@ public class Main {
         ListNode(int x){ val = x; }
     }
      */
-    private ListNode addTwoNumbers(ListNode l1, ListNode l2){
+    private static ListNode addTwoNumbers(LinkList l1, LinkList l2){
         int v1 = 0;
         int v2 = 0;
         int sum = 0;
@@ -48,5 +50,8 @@ public class Main {
         }
         return sumHead.next;
     }
+
+
+
 
 }
