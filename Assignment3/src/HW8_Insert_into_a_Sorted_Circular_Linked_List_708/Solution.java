@@ -30,10 +30,4 @@ public class Solution {
         return head;
     }
 
-
-
-
-
-
-
 }
