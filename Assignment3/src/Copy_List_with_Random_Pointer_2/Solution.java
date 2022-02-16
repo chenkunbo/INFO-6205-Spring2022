@@ -1,5 +1,11 @@
+package Copy_List_with_Random_Pointer_2;
 
+import java.util.HashMap;
 
+    // 138. Copy List with Random Pointer.
+    // first define a Node class
+
+public class Solution {
     public Node copyRandomList(Node head){
         HashMap<Node, Node> map = new HashMap<>();
 
@@ -16,3 +22,4 @@
         }
         return map.get(head);
     }
+}

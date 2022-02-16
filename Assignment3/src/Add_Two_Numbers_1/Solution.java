@@ -1,10 +1,6 @@
 package Add_Two_Numbers_1;
 
-import org.w3c.dom.Node;
-
-import java.util.HashMap;
-
-public class Main {
+public class Solution {
 
     public static void main(String[] args) {
 
@@ -50,20 +46,6 @@ public class Main {
         }
         return sumHead.next;
     }
-
-
-    // 138. Copy List with Random Pointer.
-    // first define a Node class
-    public Node copyRandomList(Node head){
-        HashMap<Node, Node> map = new HashMap<>();
-
-        Node curr = head;
-        while(curr != null){
-            map.put(curr, new Node(curr.val));
-            curr = curr.next;
-        }
-    }
-
 
 
 
