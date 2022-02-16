@@ -1,4 +1,4 @@
-package Add_Two_Numbers_2;
+package HW1_Add_Two_Numbers_2;
 
 public class Solution {
     // 2. Add Two Numbers

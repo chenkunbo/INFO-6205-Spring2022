@@ -1,4 +1,4 @@
-package Merge_k_Sorted_Lists_23;
+package HW4_Reorder_List_143;
 
 public class ListNode {
     int val;
@@ -11,6 +11,4 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
-
 }
-

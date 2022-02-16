@@ -1,4 +1,4 @@
-package Merge_k_Sorted_Lists_23;
+package HW3_Merge_k_Sorted_Lists_23;
 
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists){

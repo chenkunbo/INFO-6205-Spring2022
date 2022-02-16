@@ -1,4 +1,4 @@
-package Copy_List_with_Random_Pointer_138;
+package HW2_Copy_List_with_Random_Pointer_138;
 
 public class Node {
     public int val;
