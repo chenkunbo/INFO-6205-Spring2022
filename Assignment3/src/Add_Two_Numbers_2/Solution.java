@@ -1,12 +1,6 @@
-package Add_Two_Numbers_1;
+package Add_Two_Numbers_2;
 
 public class Solution {
-
-    public static void main(String[] args) {
-
-
-    }
-
     // 2. Add Two Numbers
     /* Definition for singly-linked list.
     public class ListNode{
@@ -46,9 +40,4 @@ public class Solution {
         }
         return sumHead.next;
     }
-
-
-
-
-
 }
