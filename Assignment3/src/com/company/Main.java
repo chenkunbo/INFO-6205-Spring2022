@@ -52,6 +52,19 @@ public class Main {
     }
 
 
+    // 138. Copy List with Random Pointer.
+    // define a Node class
+    public Node copyRandomList(Node head){
+        HashMap<Node, Node> map = new HashMap<>();
+
+        Node curr = head;
+        while(curr != null){
+            map.put(curr, new Node(curr.val));
+            curr = curr.next;
+        }
+    }
+
+
 
 
 
