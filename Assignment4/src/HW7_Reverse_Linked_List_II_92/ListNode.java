@@ -1,4 +1,4 @@
-package HW6_Linked_List_Random_Node_382;
+package HW7_Reverse_Linked_List_II_92;
 
 public class ListNode {
     int val;
@@ -10,7 +10,3 @@ public class ListNode {
         this.next = next;
     }
 }
-
-
-
-
