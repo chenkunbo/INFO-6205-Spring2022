@@ -1,4 +1,4 @@
-package HW9_Linked_List_Components_817;
+package HW04_Find_the_Minimum_and_Maximum_Number_of_Nodes_Between_Critical_Points_2058;
 
 public class ListNode {
     int val;
@@ -10,7 +10,3 @@ public class ListNode {
         this.next = next;
     }
 }
-
-
-
-

@@ -1,4 +1,4 @@
-package HW7_Reverse_Linked_List_II_92;
+package HW02_Partition_List_86;
 
 public class ListNode {
     int val;
@@ -9,4 +9,5 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
+
 }

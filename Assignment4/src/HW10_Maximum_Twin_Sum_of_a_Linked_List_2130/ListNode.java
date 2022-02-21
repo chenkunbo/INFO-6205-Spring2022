@@ -1,4 +1,4 @@
-package HW2_Partition_List_86;
+package HW10_Maximum_Twin_Sum_of_a_Linked_List_2130;
 
 public class ListNode {
     int val;
@@ -9,5 +9,4 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
-
 }

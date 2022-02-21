@@ -1,4 +1,4 @@
-package HW3_Reverse_Nodes_in_Even_Length_Groups_2074;
+package HW06_Linked_List_Random_Node_382;
 
 public class ListNode {
     int val;
@@ -10,3 +10,7 @@ public class ListNode {
         this.next = next;
     }
 }
+
+
+
+

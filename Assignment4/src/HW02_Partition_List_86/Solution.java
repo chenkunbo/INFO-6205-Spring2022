@@ -1,4 +1,4 @@
-package HW2_Partition_List_86;
+package HW02_Partition_List_86;
 
 public class Solution {
     public ListNode partition(ListNode head, int x){
