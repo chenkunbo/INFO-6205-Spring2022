@@ -34,5 +34,4 @@ public class Solution {
         }
         return new int[]{min_distance, prev_ma_index - first_ma_index};
     }
-
 }
