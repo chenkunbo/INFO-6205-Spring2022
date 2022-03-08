@@ -1,4 +1,4 @@
-package HW01_Path_Sum_III_437;
+package HW08_Delete_Leaves_With_a_Given_Value_1325;
 
 public class TreeNode {
     int val;
@@ -12,5 +12,3 @@ public class TreeNode {
         this.right = right;
     }
 }
-
-
