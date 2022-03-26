@@ -108,6 +108,9 @@ public class Main {
     private static TreeNode arrayToTree ( int[] preorder, int left, int right){
         int preorderIndex = 0;
         Map<Integer, Integer> inorderIndexMap;
+
+        inorderIndexMap = new HashMap<>();
+
         if (left > right) return null;
 
         int rootValue = preorder[preorderIndex++];
