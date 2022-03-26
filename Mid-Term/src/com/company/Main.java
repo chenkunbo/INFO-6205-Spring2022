@@ -52,16 +52,11 @@ public class Main {
 
     //Question 2:
     private static ListNode addTwoNumbers(ListNode l1, ListNode l2){
-    // Head of the new linked list - this is the head of the resultant list
     ListNode head = null;
-    // Reference of head which is null at this point
-            ListNode temp = null;
-            // Carry
-            int carry = 0;
-            // Loop for the two lists
-            while (l1 != null || l2 != null) {
-                // At the start of each iteration, we should add carry from the last iteration
-                int sum = carry;
+    ListNode temp = null;
+    int carry = 0;
+    while (l1 != null || l2 != null) {
+        int sum = carry;
                 // Since the lengths of the lists may be unequal, we are checking if the
                 // current node is null for one of the lists
                 if (l1 != null) {
