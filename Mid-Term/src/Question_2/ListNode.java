@@ -1,4 +1,4 @@
-package com.company;
+package Question_2;
 
 public class ListNode {
     int val;
@@ -9,5 +9,4 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
-
 }
