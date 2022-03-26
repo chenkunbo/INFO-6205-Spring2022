@@ -5,10 +5,12 @@ import java.util.Map;
 
 public class Solution {
 
-    public static TreeNode buildTree (int[] preorder, int[] inorder){
-        int preorderIndex = 0;
+    int preorderIndex;
+    Map<Integer, Integer> inorderIndexMap;
 
-        Map<Integer, Integer> inorderIndexMap;
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        preorderIndex = 0;
+
         inorderIndexMap = new HashMap<>();
         for (int i = 0; i < inorder.length; i++) {
             inorderIndexMap.put(inorder[i], i);
@@ -17,10 +19,7 @@ public class Solution {
         return arrayToTree(preorder, 0, preorder.length - 1);
     }
 
-    private static TreeNode arrayToTree ( int[] preorder, int left, int right){
-        int preorderIndex = 0;
-        Map<Integer, Integer> inorderIndexMap;
-        inorderIndexMap = new HashMap<>();
+    private TreeNode arrayToTree(int[] preorder, int left, int right) {
 
         if (left > right) return null;
 
@@ -29,7 +28,8 @@ public class Solution {
 
         root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
         root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
-
         return root;
     }
+
+
 }
