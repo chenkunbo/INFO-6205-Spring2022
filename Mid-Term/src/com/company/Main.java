@@ -90,8 +90,6 @@ public class Main {
 
 
     //Question 3:
-    static int preorderIndex;
-
 
     public static TreeNode buildTree ( int[] preorder, int[] inorder){
         int preorderIndex = 0;
@@ -105,25 +103,98 @@ public class Main {
         return arrayToTree(preorder, 0, preorder.length - 1);
         }
 
+    private static TreeNode arrayToTree ( int[] preorder, int left, int right){
+        int preorderIndex = 0;
+        Map<Integer, Integer> inorderIndexMap;
+        if (left > right) return null;
 
-        private static TreeNode arrayToTree ( int[] preorder, int left, int right){
-            if (left > right) return null;
+        int rootValue = preorder[preorderIndex++];
+        TreeNode root = new TreeNode(rootValue);
 
-            int rootValue = preorder[preorderIndex++];
-            TreeNode root = new TreeNode(rootValue);
+        root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
+        root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
 
-            root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
-            root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
-
-            return root;
-        }
+        return root;
+    }
 
 
 
 
 
     //Question 4:
-    public static void
+    //vector<Interval> merge(vector<Interval>& intervals) {
+    //    if (intervals.size() <= 1) return intervals;
+        sort(intervals.begin(), intervals.end(), [](Interval& a, Interval& b) {
+            return a.start < b.start;
+        });
+        vector<Interval> ret;
+        ret.push_back( move(intervals[0]) );
+        for (int i=1; i<intervals.size(); i++) {
+            if (intervals[i].start > ret.back().end) {       // new
+                ret.push_back( move(intervals[i]) );
+            }
+            else                                             // merge
+                ret.back().end = max(ret.back().end, intervals[i].end);
+        }
+        return ret;
+    }
+
+    public static List < Interval > mergeIntervals(Interval[] intervals) {
+        int n = intervals.length;
+        List < Interval > res = new ArrayList();
+
+        boolean vis[] = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            if (vis[i]) {
+                continue;
+            }
+
+            vis[i] = true;
+            int minS = intervals[i].start;
+            int maxE = intervals[i].finish;
+
+            while (true) {
+                int c = 0;
+
+                for (int j = 0; j < n; j++) {
+                    if (!vis[j] && isOverlap(minS, maxE, intervals[j])) {
+                        vis[j] = true;
+                        minS = Math.min(minS, intervals[j].start);
+                        maxE = Math.max(maxE, intervals[j].finish);
+                        c++;
+                    }
+                }
+
+                if (c == 0) {
+                    break;
+                }
+            }
+            res.add(new Interval(minS, maxE));
+        }
+
+        Collections.sort(res, new Comparator < Interval > () {
+
+            public int compare(Interval a, Interval b) {
+                if (a.start == b.start) {
+                    return a.finish - b.finish;
+                }
+
+                return a.start - b.start;
+            }
+
+        });
+
+        return res;
+    }
+
+    public static boolean isOverlap(int minS, int maxE, Interval i) {
+        if (minS > i.finish || maxE < i.start) {
+            return false;
+        }
+
+        return true;
+    }
 
 
 
