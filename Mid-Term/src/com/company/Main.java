@@ -20,6 +20,9 @@ public class Main {
         //Question 3:
         int[] preorder = {3, 9, 20, 1, 5, 7};
         int[] inorder = {9, 3, 15, 20, 7};
+        System.out.println(buildTree(preorder, inorder));
+
+
 
 
     }
@@ -90,7 +93,6 @@ public class Main {
 
 
     //Question 3:
-
     public static TreeNode buildTree ( int[] preorder, int[] inorder){
         int preorderIndex = 0;
         Map<Integer, Integer> inorderIndexMap;
@@ -119,25 +121,23 @@ public class Main {
 
 
 
-
-
     //Question 4:
     //vector<Interval> merge(vector<Interval>& intervals) {
     //    if (intervals.size() <= 1) return intervals;
-        sort(intervals.begin(), intervals.end(), [](Interval& a, Interval& b) {
-            return a.start < b.start;
-        });
-        vector<Interval> ret;
-        ret.push_back( move(intervals[0]) );
-        for (int i=1; i<intervals.size(); i++) {
-            if (intervals[i].start > ret.back().end) {       // new
-                ret.push_back( move(intervals[i]) );
-            }
-            else                                             // merge
-                ret.back().end = max(ret.back().end, intervals[i].end);
-        }
-        return ret;
-    }
+    //    sort(intervals.begin(), intervals.end(), [](Interval& a, Interval& b) {
+    //        return a.start < b.start;
+    //    });
+    //    vector<Interval> ret;
+    //    ret.push_back( move(intervals[0]) );
+    //    for (int i=1; i<intervals.size(); i++) {
+    //        if (intervals[i].start > ret.back().end) {       // new
+    //            ret.push_back( move(intervals[i]) );
+    //        }
+    //        else                                             // merge
+    //            ret.back().end = max(ret.back().end, intervals[i].end);
+    //    }
+    //    return ret;
+    //}
 
     public static List < Interval > mergeIntervals(Interval[] intervals) {
         int n = intervals.length;
