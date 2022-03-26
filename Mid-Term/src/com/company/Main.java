@@ -18,9 +18,8 @@ public class Main {
         //System.out.println(addTwoNumbers(l1, l2));
 
         //Question 3:
-        int[] preorder = {};
-        int[] inorder = {};
-
+        int[] preorder = {3, 9, 20, 1, 5, 7};
+        int[] inorder = {9, 3, 15, 20, 7};
 
 
     }
@@ -31,7 +30,7 @@ public class Main {
         int next = lower;
         for (int i = 0; i < nums.length; i++) {
             // 1. We don't need to add [Integer.MAX_VALUE, ...] to result
-            if(lower == Integer.MAX_VALUE) return res;
+            if (lower == Integer.MAX_VALUE) return res;
             if (nums[i] < next) {
                 continue;
             }
@@ -41,7 +40,7 @@ public class Main {
             }
             res.add(getRange(next, nums[i] - 1));
             // 2. We don't need to proceed after we have process Integer.MAX_VALUE in array
-            if(nums[i] == Integer.MAX_VALUE) return res;
+            if (nums[i] == Integer.MAX_VALUE) return res;
             next = nums[i] + 1;
         }
 
@@ -52,61 +51,62 @@ public class Main {
     }
 
     public static String getRange(int n1, int n2) {
-        return n1 == n2 ? String.valueOf(n1) : String.format("%d->%d" , n1, n2);
+        return n1 == n2 ? String.valueOf(n1) : String.format("%d->%d", n1, n2);
     }
 
 
     //Question 2:
-    private static ListNode addTwoNumbers(ListNode l1, ListNode l2){
-    ListNode head = null;
-    ListNode temp = null;
-    int carry = 0;
-    while (l1 != null || l2 != null) {
-        int sum = carry;
+    private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = null;
+        ListNode temp = null;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int sum = carry;
 
-        if (l1 != null) {
-            sum += l1.val;
-            l1 = l1.next;
-        }
-        if (l2 != null) {
-            sum += l2.val;
-            l2 = l2.next;
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            ListNode node = new ListNode(sum % 10);
+            carry = sum / 10;
+            if (temp == null) {
+                temp = head = node;
+            } else {
+                temp.next = node;
+                temp = temp.next;
+            }
         }
 
-        ListNode node = new ListNode(sum % 10);
-        carry = sum / 10;
-        if (temp == null) {
-            temp = head = node;
-        }else{
-            temp.next = node;
-            temp = temp.next;
+        if (carry > 0) {
+            temp.next = new ListNode(carry);
         }
-    }
-
-    if (carry > 0) {
-        temp.next = new ListNode(carry);
-    }
-    return head;
+        return head;
     }
 
 
     //Question 3:
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    static int preorderIndex;
 
-        int preorderIndex;
+
+    public static TreeNode buildTree ( int[] preorder, int[] inorder){
+        int preorderIndex = 0;
         Map<Integer, Integer> inorderIndexMap;
-        public TreeNode buildTree (int[] preorder, int[] inorder){
-            preorderIndex = 0;
-            // build a hashmap to store value -> its index relations
-            inorderIndexMap = new HashMap<>();
-            for (int i = 0; i < inorder.length; i++) {
-                inorderIndexMap.put(inorder[i], i);
-            }
 
-            return arrayToTree(preorder, 0, preorder.length - 1);
+        inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIndexMap.put(inorder[i], i);
         }
 
-        private TreeNode arrayToTree ( int[] preorder, int left, int right){
+        return arrayToTree(preorder, 0, preorder.length - 1);
+        }
+
+
+        private static TreeNode arrayToTree ( int[] preorder, int left, int right){
             if (left > right) return null;
 
             int rootValue = preorder[preorderIndex++];
@@ -117,9 +117,13 @@ public class Main {
 
             return root;
         }
-    }
 
 
+
+
+
+    //Question 4:
+    public static void
 
 
 
