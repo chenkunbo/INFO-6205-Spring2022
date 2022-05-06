@@ -1,23 +1,16 @@
 package Question4;
 
 
-import java.util.*;
-
 public class Solution {
-    public List<List<String>> groupAnagrams(String[] strs) {
-        if (strs == null || strs.length == 0) {
-            return new ArrayList<>();
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) {
+            return null;
         }
-        Map<String, List<String>> map = new HashMap<>();
-        for (String s : strs) {
-            char[] ca = s.toCharArray();
-            Arrays.sort(ca);
-            String keyStr = String.valueOf(ca);
-            if (!map.containsKey(keyStr)) {
-                map.put(keyStr, new ArrayList<>());
-            }
-            map.get(keyStr).add(s);
+        if(root == p || root == q) {
+            return root;
         }
-        return new ArrayList<>(map.values());
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        return left != null && right != null ? root : left == null ? right : left;
     }
 }
